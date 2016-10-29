@@ -26,7 +26,7 @@ def getFunctionFromMatixWhiteBlack(img):
     #return func from WB matrix image
     
     vectImg=img.flatten()
-    f=interp1d(np.arange(len(vectImg)),vectImg)
+    f=interp1d(np.arange(len(vectImg)),vectImg,'cubic')
    
     return f
 
