@@ -1,0 +1,11 @@
+{
+  "name": "FaceSpielen",
+  "version": "0.0.1",
+  "dependencies": {
+    "@google-cloud/vision": "^0.5.0",
+    "body-parser": "^1.15.2",
+    "cookie-parser": "^1.4.3",
+    "express": "^4.14.0",
+    "multer": "^1.2.0"
+  }
+}

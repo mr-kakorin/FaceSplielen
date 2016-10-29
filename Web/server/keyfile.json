@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "facespielen",
+  "private_key_id": "43fcaa9e29c976ee2f226c830ada9c2d902b7e6f",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDHlnX+0Rxoy73A\nn452iutLFZOZISzBEzagKObnupQJDGGM/Y3PdFyaAKN1AcfvBaTJdO6kn3eh+mzP\nzYMYwZSHQ8etYPpqn+ZNwXCnAJJexCSUPu4vN3dwaMSt+u51CxI1WJPMISvkubMC\n+ga3pppmsD1cOxf/XOVNMBvijoQlsjXfW4cKVCLe057V/R4mOKz/ajTA0vwJbL+N\nsyLa3RFhf29ifnRxkWU3dgzfDzfzUcekUKFqurPOyjpPPmpV+l9j635FG7zpC0mn\nseq5FeVH3SH9g5lyimNOLyWXsvCHkDDNgDsLP/9Pzr8SDT5dqtMzVcASTKUPqUON\n7JqiVyDfAgMBAAECggEBAL1bsQNbnhqHAraYKu+pCWepRunHodBkzDTT2Y8NY5na\nF0tO3JZwjdLGvE4srGXH8vn3aNrjOPuCvm3BS5nXP3W+Btol4i/7GOO4nYq0bipe\n6V2E/zHo6/bIT6HJKyf8ov/d1AudhSlyTbaLRIhFFsRKfUzd+/yZRCwhcrNWB2ZC\nquNyMl73d6iYZbNC1xA//ixpztZ5KKcI6I6tgIa9o1ZO7GwalpFl5CZi9oDlt/O0\n7kv3sk5MhQI+aNqTz5j52gvdfCI6IC/3ssJCwsJtc/mFtm+MIBbF9wvou0uD6DDN\nxgMmSZJHad6DfCuht/mkL3qqirL66P4uLB9NNyuuHvECgYEA6M3K/Snb+N1+E+by\nvmvkpgpL1conUi9TZeQbAXRgSWfCYXCWwDOUoOvJ7iMWsAzbIk50XGr4dyaTiOnQ\nxvm9hUWDaoj3dOlZAH90MPdKF7Vre2LNstIwRwXXPgSxOIfuqpvmHVGe3iNcWRE/\n5ztvOv2n7z71XrJhPqYvmiDjPK0CgYEA23lppe093J4qsIZ6Qw8wFyULBexvaFaM\nNKaDq9QHf3i+w6Q5weDe4K/OfKPkd+L8IlJvV+v568RnCGFujSpQjYPdZJcFFmkl\nnTbgK41GrOkJ1u9qbxNHlXHFjJlss5tPpV2QepcyfcMEFljSAK7iYu3wyfXDLcnS\nnItXsSFgWTsCgYEA5+e4gaAlJC9f3Gt++/l2d4BiMsGBkfja1vD3hedr0zOtCmuh\ngCzhrbu0F6iUfSMRV4dXmohkoiynYwenlc5J4GxykLmH58pbgod0MyLjh+KNAwhV\naADBXr6Ov5TlBS9DrGhIPoSEATywTXlFcw5dqyHrHARXYNHI1SOu35ZLRrECgYAG\nByenrwRr8swpXQgun1QqzpGm7/9/ViEzsP8c0Q4DqkVTCker04lLkoiRU88Km+lg\n5/K273xFxXcu+74Vknvz5xNFmABDxU+LKd6uU4sFZMEobhr2QglNSXqries6Y6Gk\nYRV+yHhSi/CozHe4HRWKsg5S/bUGpOxr8EfQTaJf0QKBgEA5uWUTrpDsFdrl8YNA\nUz0p6t3A6x1UWJTJrcMopyVUXhkUnfrSJzzPnCwVCVIyE7q7TNrrZUNpdFolruO2\nbvgweIz+ckqEJ9phceRmawG7xk6p7N8h3cZt38oIluHFuP5AY5a/2OnZsVwTRXSi\nAP0kiRc1TNT8bqme8zauV+th\n-----END PRIVATE KEY-----\n",
+  "client_email": "facespielen@appspot.gserviceaccount.com",
+  "client_id": "115842916067532339926",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://accounts.google.com/o/oauth2/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/facespielen%40appspot.gserviceaccount.com"
+}
