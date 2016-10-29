@@ -30,9 +30,6 @@ def GetCArea(cnt):
 def GetGrayScaleImg(img):
 	return cv2.cvtColor(img, cv2.COLOR_BGR2GRAY);
 
-def GetCounterArea(mat):
-	return
-
 def GetMarksCoordinates(jsonDescrip):
 	outListCoordinateFace=[]
 	with open(jsonDescrip) as jsonfile:
@@ -50,8 +47,13 @@ def TransformMarkCoordinates(markcoord,facecoord):
     return 
 
 def InterpolateBetween(img,ec):
+    k=2;
     for i in range(0,len(ec)):
-                img[ec[i][0],ec[i][1]] = img[ec[i][0]-1,ec[i][1]]/3+img[ec[i][0],ec[i][1]-1]/3+img[ec[i][0]-1,ec[i][1]-1]/3                    
+                img[ec[i][0],ec[i][1]] = img[ec[i][0]-k,ec[i][1]]/3+img[ec[i][0],ec[i][1]-k]/3+img[ec[i][0]-k,ec[i][1]-k]/3
+                #print(ec[i][0],ec[i][1])      
+    for i in range(0,len(ec)):
+        if img[ec[i][0],ec[i][1]].any()==0:
+            print(ec[i][0],ec[i][1])
     return
 
 def GetIndexesArr(arr):

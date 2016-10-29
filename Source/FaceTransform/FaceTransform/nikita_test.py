@@ -13,7 +13,7 @@ fcoord = cf.getCoordinateFace(json);
 ft.TransformMarkCoordinates(tmp,fcoord);
 cutImg=imgf[int(tmp[1]):int(tmp[4])+15,int(tmp[0]):int(tmp[3])];
 
-imgg, l = cf.rot(imgf,[100,100],45,62,27);
+imgg, l = cf.rot(imgf,[100,75],21,31,17,iscycle=True);
 
 ft.InterpolateBetween(imgg,l);
 

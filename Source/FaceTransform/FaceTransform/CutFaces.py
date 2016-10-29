@@ -2,7 +2,7 @@ import FaceTransform as ft
 import numpy as np
 import json
 import cv2
-from scipy.interpolate import interp1d
+import scipy
 from math import sqrt
 
 
@@ -29,7 +29,7 @@ def getFunctionFromMatixWhiteBlack(img):
     #return func from WB matrix image
     res = cv2.resize(img,None,fx=0.1, fy=0.1, interpolation = cv2.INTER_CUBIC)
     vectImg=res.flatten()
-    f=interp1d(np.arange(len(vectImg)),vectImg,'cubic')
+    f=scipy.interpolate.interp1d(np.arange(len(vectImg)),vectImg,'cubic')
    
     return f
 
@@ -38,7 +38,7 @@ def rot(img2,listCoord,row,col, angle,iscycle=False):
     if iscycle==False:
         partIm=img2[listCoord[0]:listCoord[0] + row,listCoord[1]:listCoord[1] + col]
         rows,cols,_ = partIm.shape
-        M = cv2.getRotationMatrix2D((cols / 2,rows / 2),30,1)
+        M = cv2.getRotationMatrix2D((cols / 3,rows / 3), angle,1)
         dst = cv2.warpAffine(partIm,M,(cols,rows))
         listofindexBlack = []
         for i in range(rows):
@@ -50,9 +50,9 @@ def rot(img2,listCoord,row,col, angle,iscycle=False):
                     img2[i + listCoord[0],j + listCoord[1]] = dst[i,j]
     
     else:
-        partIm=img2[listCoord[0]:listCoord[0] + row,listCoord[1]:listCoord[1] + row]
-        rows,cols=partIm.shape
-        M = cv2.getRotationMatrix2D((cols / 2,rows / 2),30,1)
+        partIm=img2[listCoord[0]:listCoord[0] + row,listCoord[1]:listCoord[1] + col]
+        rows,cols,_=partIm.shape
+        M = cv2.getRotationMatrix2D((cols / 4, rows / 4), angle,1)
         dst = cv2.warpAffine(partIm,M,(cols,rows))
         listofindexBlack = []
         r=round(rows/2)
