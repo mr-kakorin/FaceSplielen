@@ -22,6 +22,7 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="CutFaces.py" />
     <Compile Include="FaceTransform.py" />
   </ItemGroup>
   <PropertyGroup>
