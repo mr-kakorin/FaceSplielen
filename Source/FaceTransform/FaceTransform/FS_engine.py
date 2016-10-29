@@ -1,4 +1,5 @@
 import sys
+import json
 import cv2
 import CutFaces as cf
 if len(sys.argv)>1:
@@ -7,7 +8,16 @@ if len(sys.argv)>1:
     inputJSONName='../../../Destination/json/'+inputID
     print('success')
     cutImage=cf.cutFace(inputImageName,inputJSONName)
-    cv2.imwrite('../../../Destination/results/'+inputID,cutImage)
+
+    outFile=open('../../../Destination/results/'+inputID,'w')
+    outFile.write(json.dumps(cf.getFunctionFromMatixWhiteBlack(cutImage)))
+    outFile.close()
+    #cv2.imwrite('../../../Destination/results/'+inputID,cutImage)
 else:
-    cutImage=cf.cutFace('../../../Destination/uploads/kor.jpg','jsonDesc.txt')
-    cv2.imwrite('../../../Destination/results/'+'result.jpg',cutImage)
+    li=[1,2,3]
+    outFile=open('../../../Destination/results/123','w')
+    outFile.write(json.dumps(li))
+    outFile.close()
+    #close(outFile)
+    #cutImage=cf.cutFace('../../../Destination/uploads/kor.jpg','jsonDesc.txt')
+    #cv2.imwrite('../../../Destination/results/'+'result.jpg',cutImage)
