@@ -32,16 +32,18 @@ def getFunctionFromMatixWhiteBlack(img):
     f=interp1d(np.arange(len(vectImg)),vectImg,'cubic')
    
     return f
+
+#listCoord - coordinate of beginning pixel, row, col - rectangle to rotate, iscycle - cycle shape or rec 
 def rot(img2,listCoord,row,col, angle,iscycle=False):
     if iscycle==False:
         partIm=img2[listCoord[0]:listCoord[0] + row,listCoord[1]:listCoord[1] + col]
-        rows,cols=partIm.shape
+        rows,cols,_ = partIm.shape
         M = cv2.getRotationMatrix2D((cols / 2,rows / 2),30,1)
         dst = cv2.warpAffine(partIm,M,(cols,rows))
         listofindexBlack = []
         for i in range(rows):
             for j in range(cols):
-                if dst[i,j] == 0:
+                if dst[i,j].all() == 0:
                     listofindexBlack.append((i + listCoord[0],j + listCoord[1]))
                     img2[i + listCoord[0],j + listCoord[1]] = (img2[i + listCoord[0] - 1,j + listCoord[1]]/2 + img2[i + listCoord[0],j + listCoord[1] - 1]/2)
                 else:

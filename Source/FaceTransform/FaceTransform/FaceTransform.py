@@ -1,9 +1,8 @@
 import cv2
 import numpy as np
-from matplotlib import pyplot as plt
 import CutFaces as cf
-from mpl_toolkits.mplot3d import Axes3D as a3d
 import json
+
 #convert 3-chaneles image to 1-channel mat summed from 3-channels by mod 255 
 def GetTwoDimMatrix(img):
 	height, width, channels = img.shape	
@@ -50,13 +49,9 @@ def TransformMarkCoordinates(markcoord,facecoord):
         markcoord[i+1] = markcoord[i+1] - facecoord[0]
     return 
 
-def InterpolateBetween(img,emptycoord):
-    ecset = set(emptycoord)
-    h,w,c = img.shape
-    for i in range(0,h):
-        for j in range(0,w):
-            if i in ecset and j in ecset:
-                img[i,j] = img[i-1,j]/3+img[i,j-1]/3+img[i-1,j-1]/3                           
+def InterpolateBetween(img,ec):
+    for i in range(0,len(ec)):
+                img[ec[i][0],ec[i][1]] = img[ec[i][0]-1,ec[i][1]]/3+img[ec[i][0],ec[i][1]-1]/3+img[ec[i][0]-1,ec[i][1]-1]/3                    
     return
 
 def GetIndexesArr(arr):
