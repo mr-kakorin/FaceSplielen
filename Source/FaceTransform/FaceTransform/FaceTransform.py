@@ -1,11 +1,26 @@
 import cv2
 import numpy as np
+from matplotlib import pyplot as plt
 
-def GetThreeDimMatrix(imname):
-	img = cv2.imread(imname);
-	print(img)
+
+def GetThreeDimMatrix(img):
+	height, width, channels = img.shape	
+	twoDim = np.zeros((height, width,1), dtype='int64');
+	for i in range(0,height):
+		for j in range(0,width):
+				twoDim[i,j] = int(img[i,j,0])+int(img[i,j,1])+int(img[i,j,2])
+				if twoDim[i,j]>255:
+					twoDim[i,j] = twoDim[i,j]-255;
+	return twoDim
+
+def GetContourArea(img):
+	gray_img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+	ret,thresh = cv2.threshold(gray_img,127,255,0)
+	_,contours,_ = cv2.findContours(thresh, 1, 2)
+	cnt = contours[0]
+	area = cv2.contourArea(cnt)
 	return
 
-
-GetThreeDimMatrix('test.jpg');
+GetThreeDimMatrix(cv2.imread('test.jpg'));
+GetContourArea(cv2.imread('test.jpg'));
 
