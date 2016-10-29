@@ -24,7 +24,7 @@ def getCoordinateFace(jsonDescrip):
     for i in [0,2]:
         outListCoordinateFace.append(jsLoad['faceAnnotations'][0]['boundingPoly']['vertices'][i]['y'])
         outListCoordinateFace.append(jsLoad['faceAnnotations'][0]['boundingPoly']['vertices'][i]['x'])     
-    return int(outListCoordinateFace)
+    return outListCoordinateFace
 
 def getFunctionFromMatixWhiteBlack(img):
     #return func from WB matrix image
@@ -45,10 +45,11 @@ def rot(img2,listCoord,row,col, angle,iscycle=False):
         for i in range(rows):
             for j in range(cols):
                 if dst[i,j].all() == 0:
+                    #img2[i + listCoord[0],j + listCoord[1]] = dst[i,j]
                     listofindexBlack.append((i + listCoord[0],j + listCoord[1]))
-                    img2[i + listCoord[0],j + listCoord[1]] = (img2[i + listCoord[0] - 1,j + listCoord[1]]/2 + img2[i + listCoord[0],j + listCoord[1] - 1]/2)
+                    #img2[i + listCoord[0],j + listCoord[1]] = (img2[i + listCoord[0] - 1,j + listCoord[1]]/2 + img2[i + listCoord[0],j + listCoord[1] - 1]/2)
                 else:
-                    img2[i + listCoord[0],j + listCoord[1]] = dst[i,j]
+                    img2[i + listCoord[0],j + listCoord[1]] =dst[i,j]
     
     else:
         partIm=img2[listCoord[0]:listCoord[0] + row,listCoord[1]:listCoord[1] + col]
@@ -61,7 +62,7 @@ def rot(img2,listCoord,row,col, angle,iscycle=False):
             for j in range(cols):
                 if sqrt(float((i-r)**2+(j-r)**2)) > r:
                     listofindexBlack.append((i + listCoord[0],j + listCoord[1]))
-                    img2[i + listCoord[0],j + listCoord[1]] = (img2[i + listCoord[0] - 1,j + listCoord[1]] + img2[i + listCoord[0],j + listCoord[1] - 1]) / 2
+                    #img2[i + listCoord[0],j + listCoord[1]] = (img2[i + listCoord[0] - 1,j + listCoord[1]] + img2[i + listCoord[0],j + listCoord[1] - 1]) / 2
                 else:
                     img2[i + listCoord[0],j + listCoord[1]] = dst[i,j]
 
