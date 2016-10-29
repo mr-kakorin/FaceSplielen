@@ -1,7 +1,8 @@
 import sys
+import cv2
 if len(sys.argv)>1:
-    inputImage=sys.argv[1]
-    inputJSON=sys.argv[0]
-    print(inputImage)
+    inputID=sys.argv[1]
+    inputImage=cv2.imread('../../../Destination/uploads/'+inputID)
+    print('success')
 else:
-    print('что-то пошло не так')
+    inputImage=cv2.imread('../../../Destination/uploads/kor.jpg')
