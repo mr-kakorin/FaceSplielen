@@ -18,8 +18,3 @@ def getCoordinateFace(jsonDescrip):
         outListCoordinateFace.append(jsLoad['faceAnnotations'][0]['boundingPoly']['vertices'][i]['x'])
    
     return outListCoordinateFace
-
-
-
-tmp =  FT.GetThreeDimMatrix(cv2.imread('kor.jpg'))
-print(tmp)
