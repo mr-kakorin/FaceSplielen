@@ -3,7 +3,7 @@ import numpy as np
 from matplotlib import pyplot as plt
 import CutFaces as cf
 from mpl_toolkits.mplot3d import Axes3D as a3d
-
+import json
 #convert 3-chaneles image to 1-channel mat summed from 3-channels by mod 255 
 def GetTwoDimMatrix(img):
 	height, width, channels = img.shape	
@@ -32,5 +32,16 @@ def GetGrayScaleImg(img):
 	return cv2.cvtColor(img, cv2.COLOR_BGR2GRAY);
 
 def GetCounterArea(mat):
-
 	return
+
+def GetMarksCoordinates(jsonDescrip):
+	outListCoordinateFace=[]
+	with open(jsonDescrip) as jsonfile:
+		jsLoad = json.load(jsonfile)
+	#jsLoad = json.load(jsonDescrip)
+	for i in [0,2]:
+		outListCoordinateFace.append(jsLoad['faceAnnotations'][1][i]['position']['x'])
+		outListCoordinateFace.append(jsLoad['faceAnnotations'][1][i]['position']['y'])
+		outListCoordinateFace.append(jsLoad['faceAnnotations'][1][i]['position']['z'])
+	
+	return outListCoordinateFace
