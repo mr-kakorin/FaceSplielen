@@ -15,7 +15,7 @@ var vision = require('@google-cloud/vision')({
 });
 
 app.get( '/' , function ( req , res ) {
-	console.log( path.resolve(__filename+'/../public/idex.html'));
+	console.log( __filename+'/../public/idex.html');
 	res.sendFile( path.resolve( __filename + '/../public/index.html' ) );
 });
 
