@@ -5,7 +5,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>acb69705-b1cd-4327-8449-c5dd85e5322c</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>CutFaces.py</StartupFile>
+    <StartupFile>forTests.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -24,6 +24,9 @@
   <ItemGroup>
     <Compile Include="CutFaces.py" />
     <Compile Include="FaceTransform.py" />
+    <Compile Include="forTests.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="FS_engine.py">
       <SubType>Code</SubType>
     </Compile>
