@@ -33,12 +33,11 @@ def getFunction():
     tmp=cutFaceWB('kor.jpg',open('jsonDesc.txt','r'))
     vecttmp=tmp.flatten()
     f=interp1d(np.arange(len(vecttmp)),vecttmp)
-    plt.plot(np.arange(len(vecttmp)),vecttmp)
-    plt.show()
+    #plt.plot(np.arange(len(vecttmp)),vecttmp)
+    #plt.show()
     #cv2.imshow('image',tmp)
     #cv2.waitKey(0)
     #cv2.destroyAllWindows()
 
     pass
 
-getFunction()
