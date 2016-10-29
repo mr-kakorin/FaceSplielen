@@ -5,3 +5,5 @@ if len(sys.argv)>1:
     print(inputImage)
 else:
     print('что-то пошло не так')
+
+sys.stdout.flush();

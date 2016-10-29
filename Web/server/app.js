@@ -1,6 +1,7 @@
 var app = require('express')();
 var path = require('path');
 var fs = require('fs');
+var spawn = require('child_process').spawn;
 var upload = require('multer')({
 	dest: path.resolve( '../../Destination/uploads' ),
 	limits: {
@@ -38,8 +39,26 @@ app.post ( '/run', upload.single("photo"), function ( req, res ) {
 							console.log( 'Ошибка записи JSON-файла: ', err );
 						} else {
 
-							res.send({
-								success: true
+							var proccess = spawn(
+								'python',
+								[path.resolve('../../Source/FaceTransform/FaceTransform/FS_engine.py'), req.file.filename]
+								);
+
+							process.stdout.on('data', function (data) {
+
+								console.log('Python процесс вернул: ', data);
+							});
+
+							process.stderr.on('data', function (data) {
+							  console.log("Python ошибка:", data);
+							});
+
+							process.on('close', function (code) {
+								console.log('Python процесс завершен с кодом ', code);
+
+								res.send({
+									success: true
+								});	
 							});
 						}
 					}
