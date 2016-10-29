@@ -41,11 +41,27 @@ def GetMarksCoordinates(jsonDescrip):
 	for i in range(0,34):
 		outListCoordinateFace.append(jsLoad['faceAnnotations'][0]['landmarks'][i]['position']['x'])
 		outListCoordinateFace.append(jsLoad['faceAnnotations'][0]['landmarks'][i]['position']['y'])
-		outListCoordinateFace.append(jsLoad['faceAnnotations'][0]['landmarks'][i]['position']['z'])
+		#outListCoordinateFace.append(jsLoad['faceAnnotations'][0]['landmarks'][i]['position']['z'])
 	return outListCoordinateFace
 
 def TransformMarkCoordinates(markcoord,facecoord):
-    for i in range(0,markcoord.size/3):
+    for i in range(0,len(markcoord),2):
         markcoord[i] = markcoord[i] - facecoord[1]
         markcoord[i+1] = markcoord[i+1] - facecoord[0]
-        return
+    return 
+
+def InterpolateBetween(img,emptycoord):
+    ecset = set(emptycoord)
+    h,w,c = img.shape
+    for i in range(0,h):
+        for j in range(0,w):
+            if i in ecset and j in ecset:
+                img[i,j] = img[i-1,j]/3+img[i,j-1]/3+img[i-1,j-1]/3                           
+    return
+
+def GetIndexesArr(arr):
+    h,w,c = img.shape
+    resarr=np.array(h,w)
+    for i in range(0,h):
+        for j in range(0,w):
+            resarr.append([i,j]);
