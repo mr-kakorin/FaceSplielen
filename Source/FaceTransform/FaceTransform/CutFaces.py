@@ -27,7 +27,7 @@ def getCoordinateFace(jsonDescrip):
 
 def getFunctionFromMatixWhiteBlack(img):
     #return func from WB matrix image
-    res = cv2.resize(img,None,fx=0.05, fy=0.05, interpolation = cv2.INTER_CUBIC)
+    res = cv2.resize(img,None,fx=0.1, fy=0.1, interpolation = cv2.INTER_CUBIC)
     vectImg=res.flatten()
     f=interp1d(np.arange(len(vectImg)),vectImg,'cubic')
    
