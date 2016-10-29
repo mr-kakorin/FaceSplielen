@@ -5,7 +5,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>acb69705-b1cd-4327-8449-c5dd85e5322c</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>FaceTransform.py</StartupFile>
+    <StartupFile>CutFaces.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
