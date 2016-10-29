@@ -5,8 +5,8 @@ import os
 import CutFaces as cf
 if len(sys.argv)>1:
     inputID=sys.argv[1]
-    inputImageName=os.path.abspath('FS_engine.py')+'/../../../Destination/uploads/'+inputID
-    inputJSONName=os.path.abspath('FS_engine.py')+'/../../../Destination/json/'+inputID
+    inputImageName=os.path.abspath('FS_engine.py')+'/../../../../Destination/uploads/'+inputID
+    inputJSONName=os.path.abspath('FS_engine.py')+'/../../../../Destination/json/'+inputID
     print('success')
     cutImage=cf.cutFace(inputImageName,inputJSONName)
 
