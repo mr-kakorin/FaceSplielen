@@ -38,10 +38,8 @@ def GetMarksCoordinates(jsonDescrip):
 	outListCoordinateFace=[]
 	with open(jsonDescrip) as jsonfile:
 		jsLoad = json.load(jsonfile)
-	#jsLoad = json.load(jsonDescrip)
-	for i in [0,2]:
-		outListCoordinateFace.append(jsLoad['faceAnnotations'][1][i]['position']['x'])
-		outListCoordinateFace.append(jsLoad['faceAnnotations'][1][i]['position']['y'])
-		outListCoordinateFace.append(jsLoad['faceAnnotations'][1][i]['position']['z'])
-	
+	for i in range(0,34):
+		outListCoordinateFace.append(jsLoad['faceAnnotations'][0]['landmarks'][i]['position']['x'])
+		outListCoordinateFace.append(jsLoad['faceAnnotations'][0]['landmarks'][i]['position']['y'])
+		outListCoordinateFace.append(jsLoad['faceAnnotations'][0]['landmarks'][i]['position']['z'])
 	return outListCoordinateFace
