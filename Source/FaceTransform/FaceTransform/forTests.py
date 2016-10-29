@@ -7,4 +7,7 @@ from math import sqrt
 json='jsonDesc.txt';
 
 tmp = ft.GetMarksCoordinates(json);
-print(tmp)
+img = cv2.imread('kor.jpg');
+imgf = cf.cutFace('kor.jpg',json);
+cutImg=imgf[int(tmp[1]):int(tmp[4]),int(tmp[0]):int(tmp[3])];
+

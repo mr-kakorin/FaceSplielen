@@ -43,3 +43,9 @@ def GetMarksCoordinates(jsonDescrip):
 		outListCoordinateFace.append(jsLoad['faceAnnotations'][0]['landmarks'][i]['position']['y'])
 		outListCoordinateFace.append(jsLoad['faceAnnotations'][0]['landmarks'][i]['position']['z'])
 	return outListCoordinateFace
+
+def TransformMarkCoordinates(markcoord,facecoord):
+    for i in range(0,markcoord.size/3):
+        markcoord[i] = markcoord[i] - facecoord[1]
+        markcoord[i+1] = markcoord[i+1] - facecoord[0]
+        return
