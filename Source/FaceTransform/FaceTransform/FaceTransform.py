@@ -1,7 +1,7 @@
 import cv2
 import numpy as np
 from matplotlib import pyplot as plt
-
+import CutFaces as CF
 
 def GetThreeDimMatrix(img):
 	height, width, channels = img.shape	
@@ -13,14 +13,15 @@ def GetThreeDimMatrix(img):
 					twoDim[i,j] = twoDim[i,j]-255;
 	return twoDim
 
-def GetContourArea(img):
+def GetContour(img):
 	gray_img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 	ret,thresh = cv2.threshold(gray_img,127,255,0)
 	_,contours,_ = cv2.findContours(thresh, 1, 2)
 	cnt = contours[0]
-	area = cv2.contourArea(cnt)
-	return
+	return cnt
 
-GetThreeDimMatrix(cv2.imread('test.jpg'));
-GetContourArea(cv2.imread('test.jpg'));
+def GetCArea(cnt):
+	return cv2.contourArea(cnt)
+
+print(GetThreeDimMatrix(cv2.imread('test.jpg')));
 
