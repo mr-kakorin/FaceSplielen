@@ -1,15 +1,16 @@
 import sys
 import json
 import cv2
+import os 
 import CutFaces as cf
 if len(sys.argv)>1:
     inputID=sys.argv[1]
-    inputImageName='../../../Destination/uploads/'+inputID
-    inputJSONName='../../../Destination/json/'+inputID
+    inputImageName=os.path.abspath('FS_engine,py')+'../../../Destination/uploads/'+inputID
+    inputJSONName=os.path.abspath('FS_engine,py')+'../../../Destination/json/'+inputID
     print('success')
     cutImage=cf.cutFace(inputImageName,inputJSONName)
 
-    outFile=open('../../../Destination/results/'+inputID,'w')
+    outFile=open(os.path.abspath('FS_engine,py')+'../../../Destination/results/'+inputID,'w')
     outFile.write(json.dumps(cutImage.flatten()))
     outFile.close()
     #cv2.imwrite('../../../Destination/results/'+inputID,cutImage)

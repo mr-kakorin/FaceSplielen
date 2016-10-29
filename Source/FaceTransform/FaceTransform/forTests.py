@@ -10,8 +10,8 @@ img2 = ft.GetGrayScaleImg(testCut)
 
 
 cont=ft.GetContour(img2)
-
-cv2.imshow('img2',img2)
+cont2=ft.GetCArea(cont)
+cv2.imshow('cont2',cont2)
 cv2.waitKey(0)
 cv2.destroyAllWindows()
 #rows,cols = testWB.shape

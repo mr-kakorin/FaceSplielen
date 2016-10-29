@@ -16,11 +16,15 @@ def GetTwoDimMatrix(img):
 
 #get contour from image to use it in find contour area or hull
 def GetContour(img):
-	gray_img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-	ret,thresh = cv2.threshold(gray_img,127,255,0)
-	_,contours,_ = cv2.findContours(thresh, 1, 2)
-	cnt = contours[0]
-	return cnt
+    
+    if img.ndim>2:
+        gray_img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+    else:
+        gray_img=img
+    ret,thresh = cv2.threshold(gray_img,127,255,0)
+    _,contours,_ = cv2.findContours(thresh, 1, 2)
+    cnt = contours[0]
+    return cnt
 
 #get contour area by cont-property from GetContour 
 def GetCArea(cnt):

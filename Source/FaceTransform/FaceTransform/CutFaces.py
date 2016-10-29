@@ -15,6 +15,7 @@ def cutFace(imageName,jsonDescription):
     return cutImg
 
 
+
 def getCoordinateFace(jsonDescrip):
     #getCoordinateFace return list of indexes for slice
     outListCoordinateFace=[];
