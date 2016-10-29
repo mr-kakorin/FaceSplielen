@@ -1,5 +1,6 @@
 var app = require('express')();
 var path = require('path');
+var fs = require('fs');
 var upload = require('multer')({
 	dest: path.resolve( '../../../Destination/uploads' ),
 	limits: {
@@ -20,7 +21,7 @@ app.post ( '/run', upload.single("photo"), function ( req, res ) {
 	console.log('Загрузка файла: ', req.file.path);
 
 	vision.detectFaces( 
-		path.resolve( '../public/uploads/'+req.file.filename ),
+		path.resolve( '../../../Destination/uploads/'+req.file.filename ),
 		function ( err, faces ) {
 			if (err) {
 				console.log('Ошибка определения лиц: ', err);
