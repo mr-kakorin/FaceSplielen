@@ -31,8 +31,6 @@ def GetCArea(cnt):
 def GetGrayScaleImg(img):
 	return cv2.cvtColor(img, cv2.COLOR_BGR2GRAY);
 
-def ApproximateThreeDimM(mat):
-	fig = plt.figure()
-	ax = fig.add_subplot(111, projection='3d')
-	ax.plot(mat[:,1],mat[:,2],mat[:,3]);
+def GetCounterArea(mat):
+
 	return
