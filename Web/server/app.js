@@ -4,7 +4,7 @@ var fs = require('fs');
 var bodyParser = require('body-parser');
 var spawn = require('child_process').spawn;
 var upload = require('multer')({
-	dest: path.resolve( __filename+'/../../Destination/uploads' ),
+	dest: path.resolve( __filename+'/../../../Destination/uploads' ),
 	limits: {
 		fileSize: 2*1024*1024
 	}
