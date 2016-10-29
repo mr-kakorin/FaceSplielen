@@ -6,5 +6,3 @@ if len(sys.argv)>1:
     print('success')
 else:
     inputImage=cv2.imread('../../../Destination/uploads/kor.jpg')
-    
-
