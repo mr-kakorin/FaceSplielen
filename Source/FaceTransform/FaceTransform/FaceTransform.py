@@ -1,9 +1,8 @@
 import cv2
 import numpy as np
-from matplotlib import pyplot as plt
 import CutFaces as cf
-from mpl_toolkits.mplot3d import Axes3D as a3d
 import json
+
 #convert 3-chaneles image to 1-channel mat summed from 3-channels by mod 255 
 def GetTwoDimMatrix(img):
 	height, width, channels = img.shape	
@@ -41,11 +40,23 @@ def GetMarksCoordinates(jsonDescrip):
 	for i in range(0,34):
 		outListCoordinateFace.append(jsLoad['faceAnnotations'][0]['landmarks'][i]['position']['x'])
 		outListCoordinateFace.append(jsLoad['faceAnnotations'][0]['landmarks'][i]['position']['y'])
-		outListCoordinateFace.append(jsLoad['faceAnnotations'][0]['landmarks'][i]['position']['z'])
+		#outListCoordinateFace.append(jsLoad['faceAnnotations'][0]['landmarks'][i]['position']['z'])
 	return outListCoordinateFace
 
 def TransformMarkCoordinates(markcoord,facecoord):
-    for i in range(0,markcoord.size/3):
+    for i in range(0,len(markcoord),2):
         markcoord[i] = markcoord[i] - facecoord[1]
         markcoord[i+1] = markcoord[i+1] - facecoord[0]
-        return
+    return 
+
+def InterpolateBetween(img,ec):
+    for i in range(0,len(ec)):
+                img[ec[i][0],ec[i][1]] = img[ec[i][0]-1,ec[i][1]]/3+img[ec[i][0],ec[i][1]-1]/3+img[ec[i][0]-1,ec[i][1]-1]/3                    
+    return
+
+def GetIndexesArr(arr):
+    h,w,c = img.shape
+    resarr=np.array(h,w)
+    for i in range(0,h):
+        for j in range(0,w):
+            resarr.append([i,j]);

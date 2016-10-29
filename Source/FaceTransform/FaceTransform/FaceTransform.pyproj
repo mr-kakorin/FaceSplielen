@@ -5,7 +5,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>acb69705-b1cd-4327-8449-c5dd85e5322c</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>forTests.py</StartupFile>
+    <StartupFile>FS_engine.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -28,6 +28,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="FS_engine.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="nikita_test.py">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>

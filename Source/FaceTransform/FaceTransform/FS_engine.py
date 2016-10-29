@@ -1,8 +1,13 @@
 import sys
 import cv2
+import CutFaces as cf
 if len(sys.argv)>1:
     inputID=sys.argv[1]
-    inputImage=cv2.imread('../../../Destination/uploads/'+inputID)
+    inputImageName='../../../Destination/uploads/'+inputID
+    inputJSONName='../../../Destination/json/'+inputID
     print('success')
+    cutImage=cf.cutFace(inputImageName,inputJSONName)
+    cv2.imwrite('../../../Destination/results/'+inputID,cutImage)
 else:
-    inputImage=cv2.imread('../../../Destination/uploads/kor.jpg')
+    cutImage=cf.cutFace('../../../Destination/uploads/kor.jpg','jsonDesc.txt')
+    cv2.imwrite('../../../Destination/results/'+'result.jpg',cutImage)
