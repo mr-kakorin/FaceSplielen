@@ -10,15 +10,14 @@ if len(sys.argv)>1:
     print('success')
     cutImage=cf.cutFace(inputImageName,inputJSONName)
 
-    outFile=open(os.path.abspath('FS_engine.py')+'/../../../Destination/results/'+inputID,'w')
+    outFile=open(os.path.abspath('FS_engine.py')+'/../../../../Destination/results/'+inputID,'w')
     outFile.write(json.dumps(cutImage.flatten()))
     outFile.close()
     #cv2.imwrite('../../../Destination/results/'+inputID,cutImage)
 else:
-    li=[1,2,3]
-    outFile=open('../../../Destination/results/123','w')
-    outFile.write(json.dumps(li))
+    outFile=open(os.path.abspath('FS_engine.py')+'/../../../../Destination/results/','w')
     outFile.close()
+    #print(os.path.abspath('FS_engine.py')+'/../../../Destination/uploads/')
     #close(outFile)
     #cutImage=cf.cutFace('../../../Destination/uploads/kor.jpg','jsonDesc.txt')
     #cv2.imwrite('../../../Destination/results/'+'result.jpg',cutImage)
