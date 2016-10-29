@@ -65,3 +65,5 @@ def rot(img2,listCoord,row,col, angle,iscycle=False):
                     img2[i + listCoord[0],j + listCoord[1]] = dst[i,j]
 
     return img2, listofindexBlack
+
+

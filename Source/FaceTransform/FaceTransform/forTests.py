@@ -9,10 +9,11 @@ testCut = cf.cutFace('kor.jpg','jsonDesc.txt')
 img2 = ft.GetGrayScaleImg(testCut)
 
 
+cont=ft.GetContour(img2)
 
-rot(img2,[200,150],30,30,45,True)
-
-#cv2.imshow('res',img1)
+cv2.imshow('img2',img2)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
 #rows,cols = testWB.shape
 
 #center=testWB[100:200,100:200]
