@@ -10,7 +10,7 @@ if len(sys.argv)>1:
     cutImage=cf.cutFace(inputImageName,inputJSONName)
 
     outFile=open('../../../Destination/results/'+inputID,'w')
-    outFile.write(json.dumps(cf.getFunctionFromMatixWhiteBlack(cutImage)))
+    outFile.write(json.dumps(cutImage.flatten()))
     outFile.close()
     #cv2.imwrite('../../../Destination/results/'+inputID,cutImage)
 else:
