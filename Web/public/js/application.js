@@ -16,6 +16,11 @@ $( document ).ready( function () {
 	        async: false,
 	        success: function (data) {
 	            console.log(data)
+			    var img = new Image();
+			    img.src="/result?filename="+data.filename;
+			    img.onload = function () {
+			        $("#Result").append($(img));
+			    }
 	        },
 	        cache: false,
 	        contentType: false,

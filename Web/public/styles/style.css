@@ -1,0 +1,36 @@
+body { background: #eee; padding: 0px; margin: 0px; font-size: 17px;}
+a { text-decoration: underline; font-size: 17px; color: #0000ff; }
+a:hover { text-decoration: none; }
+li { padding: 0px; margin: 0px; }
+ul { padding: 0px; margin: 0px; list-style: none;}
+
+#Main {
+	width: 1024px;
+	margin: auto;
+	background: #fff;
+}
+
+#Head {
+	width: 1024px;
+}
+
+#Logo {
+	float: left;
+	width: 543px;
+	height: 128px;
+}
+
+#Menu {
+	float: right;
+	height: 128px;
+	width: 481px;
+}
+#Menu ul { list-style: none; }
+#Menu li  { 
+	display: inline-block;
+	line-height: 173px;
+	width: 150px;
+	text-align: center;
+}
+#Menu li a { color: black; font-size: 25px; text-decoration: none;}
+#Menu li a:hover { text-decoration: underline; }
