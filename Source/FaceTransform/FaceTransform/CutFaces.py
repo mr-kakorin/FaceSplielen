@@ -24,7 +24,7 @@ def getCoordinateFace(jsonDescrip):
     for i in [0,2]:
         outListCoordinateFace.append(jsLoad['faceAnnotations'][0]['boundingPoly']['vertices'][i]['y'])
         outListCoordinateFace.append(jsLoad['faceAnnotations'][0]['boundingPoly']['vertices'][i]['x'])     
-    return outListCoordinateFace
+    return int(outListCoordinateFace)
 
 def getFunctionFromMatixWhiteBlack(img):
     #return func from WB matrix image
