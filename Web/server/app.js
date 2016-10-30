@@ -120,7 +120,7 @@ app.post ( '/run_base64', function ( req, res ) {
 app.get('/result', function (req, res) {
 	var filename = req.query.filename;
 
-	res.sendFile(path.resolve(__filename+'/../../../Destination/uploads/'+filename));
+	res.sendFile(path.resolve(__filename+'/../../../Destination/results/'+filename));
 });
 
 app.listen( 8097, function () {
