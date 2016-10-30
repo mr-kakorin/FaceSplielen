@@ -8,7 +8,7 @@ if len(sys.argv)>1:
     inputImageName=os.path.abspath(__file__+'/../../../../Destination/uploads/'+inputID)
     inputJSONName=os.path.abspath(__file__+'/../../../../Destination/json/'+inputID)
     print('success')
-    cutImage=cf.cutFace(inputImageName,inputJSONName)
+    cutImage, tmp=cf.cutFace(inputImageName,inputJSONName)
 
     outFile=open(os.path.abspath(__file__+'/../../../../Destination/results/'+inputID),'w')
     with open(inputID, 'wb') as outfile:
