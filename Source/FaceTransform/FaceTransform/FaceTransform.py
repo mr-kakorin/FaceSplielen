@@ -3,6 +3,7 @@ import numpy as np
 import CutFaces as cf
 import json
 import math
+from scipy import interpolate
 #convert 3-chaneles image to 1-channel mat summed from 3-channels by mod 255 
 def GetTwoDimMatrix(img):
 	height, width, channels = img.shape	
@@ -70,55 +71,59 @@ def InterpolateBetween(img,ec):
         img[ec[i][0],ec[i][1]] = img[ec[i][0]-k,ec[i][1]]/3+img[ec[i][0],ec[i][1]-k]/3+img[ec[i][0]-k,ec[i][1]-k]/3
                 #print(ec[i][0],ec[i][1])      
     for i in range(0,len(ec)):              
-        if img[ec[i][0],ec[i][1],0]<50:
+      
            sum =0;
            for j in range(1,9):
                sum = sum + img[ec[i][0]-j,ec[i][1],0]/24 + img[ec[i][0],ec[i][1]-j,0]/24 + img[ec[i][0]-j,ec[i][1]-j,0]/24
-           if sum<60:
-                sum=sum*math.log(sum,2);
+           #if sum<30:
+                #sum=sum*2#math.log(sum,8);
            #print(sum)
-           img[ec[i][0],ec[i][1],0]= sum
-        if img[ec[i][0],ec[i][1],1]<50:
+           img[ec[i][0],ec[i][1],0] = sum
+        
            sum =0;
            for j in range(1,9):
                 sum = sum + img[ec[i][0]-j,ec[i][1],1]/24 + img[ec[i][0],ec[i][1]-j,1]/24 + img[ec[i][0]-j,ec[i][1]-j,1]/24
-           if sum<60:
-               sum=sum*math.log(sum,2);
+           #if sum<30:
+              # sum=sum*2#math.log(sum,8);
            #print(sum)
-           img[ec[i][0],ec[i][1],1]= sum
-        if img[ec[i][0],ec[i][1],2]<50:
+           img[ec[i][0],ec[i][1],1] = sum
+       
            sum =0;
            for j in range(1,9):
                 sum = sum + img[ec[i][0]-j,ec[i][1],2]/24 + img[ec[i][0],ec[i][1]-j,2]/24 + img[ec[i][0]-j,ec[i][1]-j,2]/24
-           if sum<60:
-                sum=sum*math.log(sum,2);
+           #if sum<30:
+               # sum=sum*2#math.log(sum,8);
                 #print(sum)
-           img[ec[i][0],ec[i][1],2]= sum
-        print(img[ec[i][0],ec[i][1]])
+           img[ec[i][0],ec[i][1],2] = sum        
 
     return
 
-def InterpolateBetween2(img,ec):
-    k=2;
-    for i in range(0,len(ec)):
-        img[ec[i][0],ec[i][1]] = img[120,120]#img[ec[i][0]-k,ec[i][1]]/3+img[ec[i][0],ec[i][1]-k]/3+img[ec[i][0]-k,ec[i][1]-k]/3
-                #print(ec[i][0],ec[i][1])      
-   
-
+def InterpolateBetweenWithRem(img,ec,l1,l2,l3):
+    k0=[x[0] for x in ec]
+    k1=[x[1] for x in ec]
+    for i in range(0,len(ec)):     
+        img[k0[i],k1[i],0] = l1[i]
+        img[k0[i],k1[i],1] = l2[i]
+        img[k0[i],k1[i],2] = l3[i]
     return
 
-def sglazh(img):
+def sglazh(img,ec):
     h,w,d=img.shape
-    k=2
+    k=4
     p=50
-    for i in range(h):
-        for j in range(w):
-            if abs(img[i,j,0] - img[i-1,j,0])>p and abs(img[i,j,0] - img[i,j-1,0])> p and abs(img[i,j,0] - img[i-1,j-1,0])> p:
-                img[i,j,0] = img[i-k,j,0]/3+img[i,j-k,0]/3+img[i-k,j-k,0]/3
-            if abs(img[i,j,1] - img[i-1,j,1])>p and abs(img[i,j,1] - img[i,j-1,1])>p and abs(img[i,j,1] - img[i-1,j-1,1])>p:
-                img[i,j,1] = img[i-k,j,1]/3+img[i,j-k,1]/3+img[i-k,j-k,1]/3
-            if abs(img[i,j,2] - img[i-1,j,2])>p and abs(img[i,j,2] - img[i,j-1,2])>p and abs(img[i,j,2] - img[i-1,j-1,2])>p:
-                img[i,j,2] = img[i-k,j,2]/3+img[i,j-k,2]/3+img[i-k,j-k,2]/3
+    k0=[x[0] for x in ec]
+    k1=[x[1] for x in ec]
+    for i in range(len(k0)-1):
+        if abs(img[ec[i][0],ec[i][1],0]-img[ec[i+1][0],ec[i][1],0])<p or  abs(img[ec[i][0],ec[i][1],0]-img[ec[i][0],ec[i+1][1],0])<p or abs(img[ec[i][0],ec[i][1],0]-img[ec[i+1][0],ec[i+1][1],0])<p: 
+            img[ec[i][0],ec[i][1],0] = img[ec[i][0]-k,ec[i][1],0]/3+img[ec[i][0],ec[i][1]-k,0]/3+img[ec[i][0]-k,ec[i][1]-k,0]/3
+            
+        if abs(img[ec[i][0],ec[i][1],1]-img[ec[i+1][0],ec[i][1],1])<p or  abs(img[ec[i][0],ec[i][1],1]-img[ec[i][0],ec[i+1][1],1])<p or abs(img[ec[i][0],ec[i][1],1]-img[ec[i+1][0],ec[i+1][1],1])<p: 
+            img[ec[i][0],ec[i][1],1] = img[ec[i][0]-k,ec[i][1],1]/3+img[ec[i][0],ec[i][1]-k,1]/3+img[ec[i][0]-k,ec[i][1]-k,1]/3
+            
+        if abs(img[ec[i][0],ec[i][1],2]-img[ec[i+1][0],ec[i][1],2])<p or  abs(img[ec[i][0],ec[i][1],2]-img[ec[i][0],ec[i+1][1],2])<p or abs(img[ec[i][0],ec[i][1],2]-img[ec[i+1][0],ec[i+1][1],2])<p: 
+            img[ec[i][0],ec[i][1],2] = img[ec[i][0]-k,ec[i][1],2]/3+img[ec[i][0],ec[i][1]-k,2]/3+img[ec[i][0]-k,ec[i][1]-k,2]/3
+            
+
 
     return
 
@@ -128,3 +133,13 @@ def GetIndexesArr(arr):
     for i in range(0,h):
         for j in range(0,w):
             resarr.append([i,j]);
+
+def getFunctionFromMatixWhiteBlack(img,ec):
+    k0=[x[0] for x in ec]
+    k1=[x[1] for x in ec]
+    l1=[];l2=[];l3=[];
+    for i in range(len(ec)):
+        l1.append(img[ec[i][0],ec[i][1],0]);   
+        l2.append(img[ec[i][0],ec[i][1],1]);   
+        l3.append(img[ec[i][0],ec[i][1],2]);    
+    return l1,l2,l3;
