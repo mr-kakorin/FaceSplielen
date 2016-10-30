@@ -74,7 +74,9 @@ app.get('/py', function (req, res) {
 app.post ( '/run_base64', function ( req, res ) {
 
 	var name='img'+(new Date()).getTime();
-	fs.writeFile(path.resolve(__filename+'/../../../Destination/uploads/'+name), req.body.imgBase64, 'base64', function (err) {
+	var imageBuffer=new Buffer(req.body.imgBase64, 'base64').toString('binary');
+	console.log(imageBuffer);
+	fs.writeFile(path.resolve(__filename+'/../../../Destination/uploads/'+name), imageBuffer, function (err) {
 		if (err) res.send('error'); else {
 			vision.detectFaces( 
 				path.resolve( __filename+'/../../../Destination/uploads/'+name ),
@@ -84,7 +86,6 @@ app.post ( '/run_base64', function ( req, res ) {
 					} else {
 
 						console.log('Лица определены.');
-						console.log('ВЕРНУЛ ГУГЛ: ', faces);
 						fs.writeFile( 
 							path.resolve( __filename+'/../../../Destination/json/'+name ),
 							JSON.stringify(faces),
