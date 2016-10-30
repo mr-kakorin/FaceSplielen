@@ -46,7 +46,6 @@ def rot(img2,listCoord,row,col, angle,iscycle=False):
         for i in range(rows):
             for j in range(cols):
                 if dst[i,j].all() == 0:
-
                     listofindexBlack.append((i + listCoord[0],j + 1 + listCoord[1]))
                     listofindexBlack.append((i + listCoord[0],j - 1 + listCoord[1]))
                     listofindexBlack.append((i + listCoord[0] + 1,j + listCoord[1]))
