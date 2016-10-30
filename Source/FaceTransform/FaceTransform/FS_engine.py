@@ -42,25 +42,6 @@ if len(sys.argv)>1:
     cv2.imwrite(os.path.abspath(__file__+'../../../Destination/results/'+inputID+'_img'),image)
 else:
     cutImage, facecoord=cf.cutFace('kor.jpg','jsonDesc.txt')
-   
-    gmc=tf.GetMarksCoordinates('jsonDesc.txt')
-    tf.TransformMarkCoordinates(gmc,facecoord)
-    for key, value in gmc.items():
-        if k == 0:
-          tf.rotel(cutImage,value,30,k)
-          tf.rotel(cutImage,value,30,k)
-        else:
-          tf.rotel(cutImage,value,30,k)
-        k=k+1
-    image = cv2.imread('kor.jpg');
-    h,w,c = cutImage.shape
-    for i in range(facecoord[0],facecoord[0]+h):
-        for j in range(facecoord[1],facecoord[1]+w):
-            image[i,j]=cutImage[i-facecoord[0],j-facecoord[1]];    
-    #outFile.close()
-    cv2.imshow('image',image)
-    cv2.waitKey(0)
-    cv2.destroyAllWindows()
     #print(os.path.abspath(__file__+'/../../../../Destination/json/'))
 
     #outFile=open(os.path.abspath('FS_engine.py')+'/../../../../Destination/results/','w')
