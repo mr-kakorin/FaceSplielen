@@ -148,21 +148,21 @@ def getFunctionFromMatixWhiteBlack(img,ec):
 def rotel(img,listC,angle,what):
     if what==0:
         imgf2 = cv2.copyMakeBorder(img,0,0,0,0,cv2.BORDER_REPLICATE)
-        img,b = cf.rot(img,[listC[0]-10,listC[1]-10],20,20,angle,True)
+        img,l,b = cf.rot(img,[listC[0]-10,listC[1]-10],20,20,angle,True)
         g1,g2,g3 = getFunctionFromMatixWhiteBlack(imgf2,l)
         InterpolateBetweenWithRem(img,l,g1,g2,g3);
         removeEdge(img,b);
         return img;
     elif what==1:
         imgf2 = cv2.copyMakeBorder(img,0,0,0,0,cv2.BORDER_REPLICATE)
-        img,b = cf.rot(img,[listC[0]-20,listC[1]-20],40,50,angle,True)
+        img,l,b = cf.rot(img,[listC[0]-20,listC[1]-20],40,50,angle,True)
         g1,g2,g3 = getFunctionFromMatixWhiteBlack(imgf2,l)
         InterpolateBetweenWithRem(img,l,g1,g2,g3);
         removeEdge(img,b);
         return img;
     elif what==2:
         imgf2 = cv2.copyMakeBorder(img,0,0,0,0,cv2.BORDER_REPLICATE)
-        img,b = cf.rot(img,[listC[0]-20,listC[1]-20],40,50,angle,True)
+        img,l,b = cf.rot(img,[listC[0]-20,listC[1]-20],40,50,angle,True)
         g1,g2,g3 = getFunctionFromMatixWhiteBlack(imgf2,l)
         InterpolateBetweenWithRem(img,l,g1,g2,g3);
         removeEdge(img,b);
