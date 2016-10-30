@@ -17,6 +17,24 @@ $( document ).ready( function () {
 
 		$.get('/result?type=results&filename='+id).then(function(data) {
 			console.log(data);
+
+			var str = data.substr(1, data.length-2);
+			console.log(str);
+			var array = str.splice('.  ');
+			console.log(array);
+
+			var plot_conf = {
+			 series: {
+			   lines: {
+			     show: true,
+			     lineWidth: 2
+			   }
+			 }
+			};
+			var all_data = [
+			  { data: array},
+			];
+			$.plot($(".plot"), all_data, plot_conf);
 		}).then(function() {
 
 		});
