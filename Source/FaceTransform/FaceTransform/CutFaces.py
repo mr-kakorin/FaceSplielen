@@ -22,8 +22,8 @@ def getCoordinateFace(jsonDescrip):
     with open(jsonDescrip) as jsonfile:
         jsLoad = json.load(jsonfile) 
     for i in [0,2]:
-        outListCoordinateFace.append(jsLoad['faceAnnotations'][0]['boundingPoly']['vertices'][i]['y'])
-        outListCoordinateFace.append(jsLoad['faceAnnotations'][0]['boundingPoly']['vertices'][i]['x'])     
+        outListCoordinateFace.append(jsLoad[0]['bounds']['head'][i]['y'])
+        outListCoordinateFace.append(jsLoad[0]['bounds']['head'][i]['x'])     
     return outListCoordinateFace
 
 def getFunctionFromMatixWhiteBlack(img):
