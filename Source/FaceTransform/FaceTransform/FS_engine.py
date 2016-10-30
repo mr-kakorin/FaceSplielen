@@ -21,7 +21,7 @@ if len(sys.argv)>1:
         #json.dump(list(cutImage.flatten()), outfile)
     FUCKED_FILE=open(os.path.abspath(__file__+'/../../../../Destination/results/'+inputID),'w')
     FUCKED_FILE.write(str(tf.GetTwoDimMatrix(cutImage)[0:10,0:10].flatten()))
-    FUCKED_FILE.close(); plt.plot(tf.GetTwoDimMatrix(cutImage)[0:10,0:10].flatten());	plt.savefig(os.path.abspath(__file__+'/../../../../Destination/results/'+inputID + '.png'));
+    FUCKED_FILE.close(); 
     #cutImage, facecoord=cf.cutFace(inputImageName,inputJSONName)
     cutImage, facecoord=cf.cutFace(inputImageName,inputJSONName)
     gmc=tf.GetMarksCoordinates(inputJSONName)
@@ -40,6 +40,8 @@ if len(sys.argv)>1:
         for j in range(facecoord[1],facecoord[1]+w):
             image[i,j]=cutImage[i-facecoord[0],j-facecoord[1]];    
     #outFile.close()
+    plt.plot(tf.GetTwoDimMatrix(cutImage)[0:10,0:10].flatten());
+    plt.savefig(os.path.abspath(__file__+'/../../../../Destination/results/'+inputID + '.png'));
     cv2.imwrite(os.path.abspath(__file__+'/../../../../Destination/results/'+inputID+'.jpg'),image)
 else:
     cutImage, facecoord=cf.cutFace('kor.jpg','jsonDesc.txt')
