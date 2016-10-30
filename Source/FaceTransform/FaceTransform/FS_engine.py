@@ -11,8 +11,9 @@ if len(sys.argv)>1:
     cutImage=cf.cutFace(inputImageName,inputJSONName)
 
     outFile=open(os.path.abspath(__file__+'/../../../../Destination/results/'+inputID,'w'))
-    outFile.write(json.dumps(cutImage.flatten()))
-    outFile.close()
+    with open(inputID, 'wb') as outfile:
+        json.dump(cutImage.flatten(), outfile)
+    #outFile.close()
     #cv2.imwrite('../../../Destination/results/'+inputID,cutImage)
 else:
     print(os.path.abspath(__file__+'/../../../../Destination/json/'))
