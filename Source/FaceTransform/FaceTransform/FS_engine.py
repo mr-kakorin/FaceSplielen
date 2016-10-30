@@ -15,7 +15,7 @@ if len(sys.argv)>1:
 
     with open(inputID, 'wb') as outfile:
         outjson = {}
-        outjson['img']=numpy.array_str(cutImage[0:80,0:80])
+        outjson['img']=numpy.array_str(cutImage[0:80,0:80].flatten())
         json.dump(outjson, outfile);
         #json.dump(list(cutImage.flatten()), outfile)
     FUCKED_FILE=open(os.path.abspath(__file__+'/../../../../Destination/results/'+inputID),'w')
