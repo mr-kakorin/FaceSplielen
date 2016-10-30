@@ -43,7 +43,7 @@ $( document ).ready( function () {
 	        success: function (data) {
 	            console.log(data)
 			    var img = new Image();
-			    img.src="/result?filename="+data.filename;
+			    img.src="/result?filename="+data.filename+'.jpg';
 			    img.onload = function () {
 			        $("#Result").append($(img));
 			    }
@@ -72,6 +72,8 @@ $( document ).ready( function () {
 	        data: formData,
 	        async: false,
 	        success: function (data) {
+	        	$("#window_FileUpload").hide();
+	        	$("#Result").removeClass("deactive");
 	            console.log(data)
 			    var img = new Image();
 			    img.src="/result?filename="+data.filename;
@@ -119,6 +121,8 @@ $( document ).ready( function () {
 	        data: formData,
 	        async: false,
 	        success: function (data) {
+	        	$("#window_FileUpload").hide();
+	        	$("#Result").removeClass("deactive");
 	            console.log(data)
 			    var img = new Image();
 			    img.src="/result?filename="+data.filename;
