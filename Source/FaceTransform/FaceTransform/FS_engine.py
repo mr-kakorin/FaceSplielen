@@ -18,9 +18,9 @@ if len(sys.argv)>1:
         outjson['img']=numpy.array_str(cutImage[0:80,0:80].flatten())
         json.dump(outjson, outfile);
         #json.dump(list(cutImage.flatten()), outfile)
-    FUCKED_FILE=open(os.path.abspath(__file__+'/../../../../Destination/results/'+inputID),'w')
-    FUCKED_FILE.write(str([1,2,3,4,5]))
-    FUCKED_FILE.close();
+    #FUCKED_FILE=open(os.path.abspath(__file__+'/../../../../Destination/results/'+inputID),'w')
+   # FUCKED_FILE.write(str([1,2,3,4,5]))
+    #FUCKED_FILE.close();
     #outFile.close()
     #cv2.imwrite('../../../Destination/results/'+inputID,cutImage)
 else:
