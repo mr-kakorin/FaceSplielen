@@ -15,7 +15,6 @@ if len(sys.argv)>1:
     with open(inputID, 'wb') as outfile:
         outjson = {}
         outjson['img']=numpy.array_str(cutImage)
-        outjson['leaf']=leaf;
         json.dump(outjson, outfile);
         #json.dump(list(cutImage.flatten()), outfile)
     #outFile.close()
