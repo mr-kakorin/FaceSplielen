@@ -20,7 +20,7 @@ $( document ).ready( function () {
 
 			var str = data.substr(1, data.length-2);
 			console.log(str);
-			var array = str.splice('.  ');
+			var array = str.split('.  ');
 			console.log(array);
 
 			var plot_conf = {
