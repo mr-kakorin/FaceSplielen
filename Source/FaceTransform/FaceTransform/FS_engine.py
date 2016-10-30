@@ -21,10 +21,24 @@ if len(sys.argv)>1:
     FUCKED_FILE=open(os.path.abspath(__file__+'/../../../../Destination/results/'+inputID),'w')
     FUCKED_FILE.write(str(cutImage[0:10,0:10].flatten()))
     FUCKED_FILE.close();
+    cutImage, facecoord=cf.cutFace(inputImageName,inputJSONName)
+    gmc=tf.GetMarksCoordinates(inputJSONName)
+    gmc=tf.TransformMarkCoordinates(gmc,facecoord)
+    k=0
+    tf.rotel(cutImage,gmc.values[0],30,k)
+    for i in gmc.values:
+        tf.rotel(cutImage,i,30,k)
+        k=k+1
+    image = cv2.imread(inputImageName);
+    h,w,c = cutImage.shape
+    for i in range(facecoord[0],facecoord[0]+h):
+        for j in range(facecoord[1],facecoord[1]+w):
+            image[i,j]=cutImage[i,j];    
     #outFile.close()
-    #cv2.imwrite('../../../Destination/results/'+inputID,cutImage)
+    cv2.imwrite(os.path.abspath(__file__+'../../../Destination/results/'+inputID+'_img'),image)
 else:
     print(os.path.abspath(__file__+'/../../../../Destination/json/'))
+
     #outFile=open(os.path.abspath('FS_engine.py')+'/../../../../Destination/results/','w')
     #outFile.close()
     #print(os.path.abspath('FS_engine.py')+'/../../../Destination/uploads/')

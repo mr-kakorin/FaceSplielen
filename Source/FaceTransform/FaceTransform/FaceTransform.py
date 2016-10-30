@@ -31,14 +31,6 @@ def GetContour(img):
 def GetCArea(cnt):
 	return cv2.contourArea(cnt)
 
-#get gray scale image from normal image
-def GetGrayScaleImg(img):
-    if np.array(img).ndim>2:
-	    return cv2.cvtColor(img, cv2.COLOR_BGR2GRAY);
-    else:
-        return img
-
-
 def GetMarksCoordinates(jsonDescrip):
 	outListCoordinateFace={}
 	with open(jsonDescrip) as jsonfile:
@@ -48,16 +40,12 @@ def GetMarksCoordinates(jsonDescrip):
         round(jsLoad[0]['features']['eyes']['left']['center']['x'])]
 		outListCoordinateFace['right_eye']=[
 		round(jsLoad[0]['features']['eyes']['right']['center']['y']),
-        round(jsLoad[0]['features']['eyes']['right']['center']['x'])]
-        outListCoordinateFace['mouth']=[
+        round(jsLoad[0]['features']['eyes']['right']['center']['x'])];outListCoordinateFace['mouth']=[
 		round(jsLoad[0]['features']['mouth']['center']['y']),
-        round(jsLoad[0]['features']['mouth']['center']['x'])]
-        outListCoordinateFace['nose']=[
+        round(jsLoad[0]['features']['mouth']['center']['x'])];outListCoordinateFace['nose']=[
 		round(jsLoad[0]['features']['nose']['tip']['y']),
         round(jsLoad[0]['features']['nose']['tip']['x'])]
-
-
-		#outListCoordinateFace.append(jsLoad['faceAnnotations'][0]['landmarks'][i]['position']['z'])
+        #outListCoordinateFace.append(jsLoad['faceAnnotations'][0]['landmarks'][i]['position']['z'])
 	return outListCoordinateFace
 
 def zalitPart(img,inlist,row,col,inlistout):
@@ -158,10 +146,36 @@ def getFunctionFromMatixWhiteBlack(img,ec):
     return l1,l2,l3;
 
 def rotel(img,listC,angle,what):
-
     if what==0:
-        return cf.rot(img,[listC[0]-10,listC[1]-10],20,20,angle,True)
+        imgf2 = cv2.copyMakeBorder(img,0,0,0,0,cv2.BORDER_REPLICATE)
+        img,b = cf.rot(img,[listC[0]-10,listC[1]-10],20,20,angle,True)
+        g1,g2,g3 = getFunctionFromMatixWhiteBlack(imgf2,l)
+        InterpolateBetweenWithRem(img,l,g1,g2,g3);
+        removeEdge(img,b);
+        return img;
     elif what==1:
-        return cf.rot(img,[listC[0]-20,listC[1]-20],40,50,angle,True)
+        imgf2 = cv2.copyMakeBorder(img,0,0,0,0,cv2.BORDER_REPLICATE)
+        img,b = cf.rot(img,[listC[0]-20,listC[1]-20],40,50,angle,True)
+        g1,g2,g3 = getFunctionFromMatixWhiteBlack(imgf2,l)
+        InterpolateBetweenWithRem(img,l,g1,g2,g3);
+        removeEdge(img,b);
+        return img;
     elif what==2:
-        return cf.rot(img,[listC[0]-20,listC[1]-20],40,50,angle,True)
+        imgf2 = cv2.copyMakeBorder(img,0,0,0,0,cv2.BORDER_REPLICATE)
+        img,b = cf.rot(img,[listC[0]-20,listC[1]-20],40,50,angle,True)
+        g1,g2,g3 = getFunctionFromMatixWhiteBlack(imgf2,l)
+        InterpolateBetweenWithRem(img,l,g1,g2,g3);
+        removeEdge(img,b);
+        return img;
+
+def removeEdge(img,b):
+     tmp = []
+     for i in range(len(b)):
+         tmp.append(cv2.GaussianBlur(img[b[i][0]:b[i][0]+3,b[i][1]:b[i][1]+3],(5,5),0))
+     for i in range(len(b)):
+         for j in range(3):
+             for e in range(3):
+                 img[b[i][0]+j,b[i][1]] = tmp[i][j,e];
+                 img[b[i][0],b[i][1]+j] = tmp[i][j,e];
+     return img 
+
