@@ -55,15 +55,7 @@ $( document ).ready( function () {
 	        	imgBase64: data
 	        },
 	        success: function (data) {
-	        	$("#window_FileUpload").hide();
-	        	$("#window_WebCam").hide();
-	        	$("#Result").removeClass("deactive");
-	            console.log(data)
-			    var img = new Image();
-			    img.src="/result?filename="+data.filename+'.jpg';
-			    img.onload = function () {
-			        $("#Result").append($(img));
-			    }
+	        	ShowResults(data.filename);
 	        }
 	    });		
 	});
@@ -89,14 +81,7 @@ $( document ).ready( function () {
 	        data: formData,
 	        async: false,
 	        success: function (data) {
-	        	$("#window_FileUpload").hide();
-	        	$("#Result").removeClass("deactive");
-	            console.log(data)
-			    var img = new Image();
-			    img.src="/result?filename="+data.filename;
-			    img.onload = function () {
-			        $("#Result").append($(img));
-			    }
+	        	ShowResults(data.filename);
 	        },
 	        cache: false,
 	        contentType: false,
@@ -138,14 +123,7 @@ $( document ).ready( function () {
 	        data: formData,
 	        async: false,
 	        success: function (data) {
-	        	$("#window_FileUpload").hide();
-	        	$("#Result").removeClass("deactive");
-	            console.log(data)
-			    var img = new Image();
-			    img.src="/result?filename="+data.filename;
-			    img.onload = function () {
-			        $("#Result").append($(img));
-			    }
+	        	ShowResults(data.filename);
 	        },
 	        cache: false,
 	        contentType: false,
@@ -162,14 +140,7 @@ $( document ).ready( function () {
 	        data: formData,
 	        async: false,
 	        success: function (data) {
-	        	$("#window_FileUpload").hide();
-	        	$("#Result").removeClass("deactive");
-	            console.log(data)
-			    var img = new Image();
-			    img.src="/result?filename="+data.filename;
-			    img.onload = function () {
-			        $("#Result").append($(img));
-			    }
+	        	ShowResults(data.filename);
 	        },
 	        cache: false,
 	        contentType: false,
