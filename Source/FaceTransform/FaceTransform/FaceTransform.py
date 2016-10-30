@@ -143,3 +143,12 @@ def getFunctionFromMatixWhiteBlack(img,ec):
         l2.append(img[ec[i][0],ec[i][1],1]);   
         l3.append(img[ec[i][0],ec[i][1],2]);    
     return l1,l2,l3;
+
+def rotel(img,listC,angle,what):
+
+    if what==0:
+        return cf.rot(img,[listC[0]-10,listC[1]-10],20,20,angle,True)
+    elif what==1:
+        return cf.rot(img,[listC[0]-20,listC[1]-20],40,50,angle,True)
+    elif what==2:
+        return cf.rot(img,[listC[0]-20,listC[1]-20],40,50,angle,True)
