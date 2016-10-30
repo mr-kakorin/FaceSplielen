@@ -16,9 +16,12 @@ fcoord = cf.getCoordinateFace(json);
 ft.TransformMarkCoordinates(tmp,fcoord);
 cutImg=imgf[int(tmp[1]):int(tmp[4])+15,int(tmp[0]):int(tmp[3])];
 
-imgg, l = cf.rot(imgf,[100,100],31,31,17);
+imgf2 = cv2.copyMakeBorder(imgf,0,0,0,0,cv2.BORDER_REPLICATE)
+imgg, l = cf.rot(imgf,[100,80],31,41,-25);
+g1,g2,g3 = ft.getFunctionFromMatixWhiteBlack(imgf2,l)
 
-ft.InterpolateBetween(imgg,l);
+
+ft.InterpolateBetweenWithRem(imgg,l,g1,g2,g3);
 
 
 cv2.imshow('image',imgg)
