@@ -9,8 +9,8 @@ import numpy as np
 testCut,tt = cf.cutFace('kor.jpg','jsonDesc.txt')
 dic=ft.GetMarksCoordinates('jsonDesc.txt')
 ft.TransformMarkCoordinates(dic,tt)
-tmp=ft.zalitPart(testCut,dic['RIGHT_EYE'],10,10,dic['NOSE_BOTTOM_CENTER'])
-
+#tmp=ft.zalitPart(testCut,dic['RIGHT_EYE'],10,10,dic['NOSE_TIP'])
+tmp2,k=ft.rotel(testCut,dic['NOSE_TIP'],30,1)
 #print(tmp)
 #img2 = ft.GetGrayScaleImg(testCut)
 rows,cols,_ = testCut.shape
@@ -22,7 +22,7 @@ rows,cols,_ = testCut.shape
 #cont=ft.GetContour(img2)
 #cont2=ft.GetCArea(cont)
 
-cv2.imshow('image',tmp)
+cv2.imshow('image',tmp2)
 cv2.waitKey(0)
 cv2.destroyAllWindows()
 #rows,cols = testWB.shape

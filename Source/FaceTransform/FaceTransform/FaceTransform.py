@@ -143,3 +143,25 @@ def getFunctionFromMatixWhiteBlack(img,ec):
         l2.append(img[ec[i][0],ec[i][1],1]);   
         l3.append(img[ec[i][0],ec[i][1],2]);    
     return l1,l2,l3;
+
+
+def removeEdge(img,b):
+    tmp = []
+    for i in range(len(b)):
+        tmp.append(cv2.GaussianBlur(img[b[i][0]:b[i][0]+3,b[i][1]:b[i][1]+3],(5,5),0))
+    for i in range(len(b)):
+        for j in range(3):
+            for e in range(3):
+                img[b[i][0]+j,b[i][1]] = tmp[i][j,e];
+                img[b[i][0],b[i][1]+j] = tmp[i][j,e];
+    return img
+
+def rotel(img,listC,angle,what):
+
+    if what==0:
+        return cf.rot(img,[listC[0]-10,listC[1]-10],20,20,angle,True)
+    elif what==1:
+        return cf.rot(img,[listC[0]-20,listC[1]-20],40,50,angle,True)
+    elif what==2:
+        return cf.rot(img,[listC[0]-20,listC[1]-20],40,50,angle,True)
+
