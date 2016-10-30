@@ -19,7 +19,7 @@ if len(sys.argv)>1:
         #json.dump(outjson, outfile);
         #json.dump(list(cutImage.flatten()), outfile)
     FUCKED_FILE=open(os.path.abspath(__file__+'/../../../../Destination/results/'+inputID),'w')
-    FUCKED_FILE.write(str(cutImage[0:30,0:30].flatten()))
+    FUCKED_FILE.write(int(cutImage[0:30,0:30].flatten()))
     FUCKED_FILE.close();
     #outFile.close()
     #cv2.imwrite('../../../Destination/results/'+inputID,cutImage)
