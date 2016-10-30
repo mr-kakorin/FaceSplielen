@@ -2,6 +2,7 @@ import sys
 import json
 import cv2
 import os 
+import numpy
 import CutFaces as cf
 if len(sys.argv)>1:
     inputID=sys.argv[1]
