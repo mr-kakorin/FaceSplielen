@@ -45,6 +45,7 @@ else:
    
     gmc=tf.GetMarksCoordinates('jsonDesc.txt')
     tf.TransformMarkCoordinates(gmc,facecoord)
+    k=0;
     for key, value in gmc.items():
         if k == 0:
           tf.rotel(cutImage,value,30,k)

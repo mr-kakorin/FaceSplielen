@@ -135,7 +135,7 @@ def GetIndexesArr(arr):
         for j in range(0,w):
             resarr.append([i,j]);
 
-def getFunctionFromMatixWhiteBlack(img,ec):
+def GetThreeChannelstoRem(img,ec):
     k0=[x[0] for x in ec]
     k1=[x[1] for x in ec]
     l1=[];l2=[];l3=[];
@@ -148,24 +148,24 @@ def getFunctionFromMatixWhiteBlack(img,ec):
 def rotel(img,listC,angle,what):
     if what==0:
         imgf2 = cv2.copyMakeBorder(img,0,0,0,0,cv2.BORDER_REPLICATE)
-        img,l,b = cf.rot(img,[listC[0]-10,listC[1]-10],20,20,angle,True)
-        g1,g2,g3 = getFunctionFromMatixWhiteBlack(imgf2,l)
+        img,l,b = cf.rot(img,[listC[0]-10,listC[1]-10],20,20,angle*math.log(angle,3),True)
+        g1,g2,g3 = GetThreeChannelstoRem(imgf2,l)
         InterpolateBetweenWithRem(img,l,g1,g2,g3);
-        removeEdge(img,b);
+        removeEdge(img,b);       
         return img;
     elif what==1:
         imgf2 = cv2.copyMakeBorder(img,0,0,0,0,cv2.BORDER_REPLICATE)
-        img,l,b = cf.rot(img,[listC[0]-20,listC[1]-20],40,50,angle,True)
-        g1,g2,g3 = getFunctionFromMatixWhiteBlack(imgf2,l)
+        img,l,b = cf.rot(img,[listC[0]-20,listC[1]-20],40,50,angle*math.log(angle,7),True)
+        g1,g2,g3 = GetThreeChannelstoRem(imgf2,l)
         InterpolateBetweenWithRem(img,l,g1,g2,g3);
-        removeEdge(img,b);
+        removeEdge(img,b);        
         return img;
     elif what==2:
         imgf2 = cv2.copyMakeBorder(img,0,0,0,0,cv2.BORDER_REPLICATE)
-        img,l,b = cf.rot(img,[listC[0]-20,listC[1]-20],40,50,angle,True)
-        g1,g2,g3 = getFunctionFromMatixWhiteBlack(imgf2,l)
+        img,l,b = cf.rot(img,[listC[0]-20,listC[1]-20],40,50,angle*math.log(angle,1/7),True)
+        g1,g2,g3 = GetThreeChannelstoRem(imgf2,l)
         InterpolateBetweenWithRem(img,l,g1,g2,g3);
-        removeEdge(img,b);
+        removeEdge(img,b);       
         return img;
 
 def removeEdge(img,b):
@@ -178,4 +178,3 @@ def removeEdge(img,b):
                  img[b[i][0]+j,b[i][1]] = tmp[i][j,e];
                  img[b[i][0],b[i][1]+j] = tmp[i][j,e];
      return img 
-
