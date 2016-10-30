@@ -12,8 +12,12 @@ $( document ).ready( function () {
 		var result = new Image();
 		result.src = '/result?type=results&filename='+id+'.jpg';
 
+		var plot = new Image();
+		plot.src="/result?type=results&filename="+id+".png";
+
 		$('#SourcePhoto').append($(source));
 		$("#ResPhoto").append($(result));
+		$("#chartContainer").append($(plot));
 
 		$.get('/result?type=results&filename='+id).then(function(data) {
 			console.log(data);
@@ -23,18 +27,73 @@ $( document ).ready( function () {
 			var array = str.split('.  ');
 			console.log(array);
 
-			var plot_conf = {
-			 series: {
-			   lines: {
-			     show: true,
-			     lineWidth: 2
-			   }
-			 }
-			};
-			var all_data = [
-			  { data: array},
-			];
-			var plot = $('.plot').plot(all_data, plot_conf).data('plot');
+			$("#chartContainer").dxChart({
+			    dataSource: array,
+			    title: "График вашего лица",
+			    equalBarWidth: false,
+			    commonAxisSettings: {
+			        grid: { visible: true }
+			    },
+			    commonPaneSettings: {
+			        border: { visible: true }
+			    },
+			    commonSeriesSettings: { 
+			        argumentField: "language",
+			        point: {
+			            hoverMode: "allArgumentPoints",
+			            selectionMode: "allArgumentPoints"
+			        }
+			    },
+			    series: [{
+			        valueField: "avgTail",
+			        name: "Длина хвоста",
+			        color: "#5F8B95"
+			    }, {
+			        valueField: "avgScratches",
+			        name: "Количество царапин",
+			        axis: "scratches",
+			        color: "#BA4D51"
+			    }],
+			    argumentAxis: { hoverMode: "allArgumentPoints" },
+			    valueAxis: [{
+			        title: {
+			            text: "Длина хвоста, см",
+			            font: {
+			                color: "#5F8B95"
+			            }
+			        },
+			        label: {
+			            font: {
+			                color: "#5F8B95"
+			            }
+			        }
+			        
+			    }, {
+			        name: "scratches",
+			        position: "right",
+			        title: {
+			            text: "Количество царапин за игру",
+			            font: {
+			                color: "#BA4D51"
+			            }
+			        },
+			        label: {
+			            font: {
+			                color: "#BA4D51"
+			            }
+			        }
+			    }],
+			    legend: {
+			        verticalAlignment: "bottom",
+			        horizontalAlignment: "center",
+			        itemTextPosition: "right"
+			    },
+			    tooltip: {
+			        enabled: true,
+			        customizeText: function() {
+			        }
+			    }
+			});
 		}).then(function() {
 
 		});

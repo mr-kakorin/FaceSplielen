@@ -79,3 +79,10 @@ div.height120 { height: 120px; }
 	margin-top: 45px;
 	margin-bottom: 15px;
 }
+
+#Loading {
+	height: 200px;
+	line-height: 200px;
+	text-align: center;
+	font-size: 50px;
+}
