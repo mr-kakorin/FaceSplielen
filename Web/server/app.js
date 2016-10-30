@@ -74,7 +74,8 @@ app.get('/py', function (req, res) {
 app.post ( '/run_base64', function ( req, res ) {
 
 	var name='img'+(new Date()).getTime();
-	var imageBuffer=new Buffer(req.body.imgBase64, 'base64').toString('binary');
+	var data = req.body.imgBase64.replace(/^data:image\/\w+;base64,/, "");
+	var imageBuffer=new Buffer(data, 'base64');
 	console.log(imageBuffer);
 	fs.writeFile(path.resolve(__filename+'/../../../Destination/uploads/'+name), imageBuffer, function (err) {
 		if (err) res.send('error'); else {
