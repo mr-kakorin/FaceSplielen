@@ -10,9 +10,9 @@ def GetTwoDimMatrix(img):
 	twoDim = np.zeros((height, width,1));
 	for i in range(0,height):
 		for j in range(0,width):
-				twoDim[i,j] = (img[i,j,0])/3+(img[i,j,1])/3+(img[i,j,2])/3
-				#if twoDim[i,j]>255:
-					#twoDim[i,j] = twoDim[i,j]-255;
+				twoDim[i,j] = (img[i,j,0])+(img[i,j,1])+(img[i,j,2])
+				if twoDim[i,j]>255:
+					twoDim[i,j] = twoDim[i,j]-255;
 	return twoDim
 
 #get contour from image to use it in find contour area or hull
@@ -43,10 +43,20 @@ def GetMarksCoordinates(jsonDescrip):
 	outListCoordinateFace={}
 	with open(jsonDescrip) as jsonfile:
 		jsLoad = json.load(jsonfile)
-	for i in range(0,34):
-		outListCoordinateFace[jsLoad['faceAnnotations'][0]['landmarks'][i]['type']]=[
-		round(jsLoad['faceAnnotations'][0]['landmarks'][i]['position']['y']),
-        round(jsLoad['faceAnnotations'][0]['landmarks'][i]['position']['x'])]
+		outListCoordinateFace['left_eye']=[
+		round(jsLoad[0]['features']['eyes']['left']['center']['y']),
+        round(jsLoad[0]['features']['eyes']['left']['center']['x'])]
+		outListCoordinateFace['right_eye']=[
+		round(jsLoad[0]['features']['eyes']['right']['center']['y']),
+        round(jsLoad[0]['features']['eyes']['right']['center']['x'])]
+        outListCoordinateFace['mouth']=[
+		round(jsLoad[0]['features']['mouth']['center']['y']),
+        round(jsLoad[0]['features']['mouth']['center']['x'])]
+        outListCoordinateFace['nose']=[
+		round(jsLoad[0]['features']['nose']['tip']['y']),
+        round(jsLoad[0]['features']['nose']['tip']['x'])]
+
+
 		#outListCoordinateFace.append(jsLoad['faceAnnotations'][0]['landmarks'][i]['position']['z'])
 	return outListCoordinateFace
 
@@ -147,18 +157,6 @@ def getFunctionFromMatixWhiteBlack(img,ec):
         l3.append(img[ec[i][0],ec[i][1],2]);    
     return l1,l2,l3;
 
-
-def removeEdge(img,b):
-    tmp = []
-    for i in range(len(b)):
-        tmp.append(cv2.GaussianBlur(img[b[i][0]:b[i][0]+3,b[i][1]:b[i][1]+3],(5,5),0))
-    for i in range(len(b)):
-        for j in range(3):
-            for e in range(3):
-                img[b[i][0]+j,b[i][1]] = tmp[i][j,e];
-                img[b[i][0],b[i][1]+j] = tmp[i][j,e];
-    return img
-
 def rotel(img,listC,angle,what):
 
     if what==0:
@@ -167,4 +165,3 @@ def rotel(img,listC,angle,what):
         return cf.rot(img,[listC[0]-20,listC[1]-20],40,50,angle,True)
     elif what==2:
         return cf.rot(img,[listC[0]-20,listC[1]-20],40,50,angle,True)
-
