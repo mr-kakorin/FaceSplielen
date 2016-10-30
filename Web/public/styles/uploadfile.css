@@ -1,0 +1,23 @@
+
+.myUploader .simform {
+  margin: auto;
+  background: rgba(0, 0, 0, 0.1);
+  width: 500px;
+  height:200px;
+  border: 5px dashed #007473 ;
+  text-align: center;
+  font-size: 24px;
+  color: #222;
+  padding-top: 20px;
+  cursor: pointer;
+}
+
+.myUploader .simform.hover {
+  background: rgba(0, 0, 0, 0.8);
+  color: #eee;
+}
+
+.myUploader .simform.simformSpec {
+  font-size: 50px;
+  padding-top: 20px;
+}
