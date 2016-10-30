@@ -11,12 +11,14 @@ if len(sys.argv)>1:
     print('success')
     cutImage, tmp=cf.cutFace(inputImageName,inputJSONName)
 
-    outFile=open(os.path.abspath(__file__+'/../../../../Destination/results/'+inputID),'w')
     with open(inputID, 'wb') as outfile:
         outjson = {}
         outjson['img']=numpy.array_str(cutImage)
         json.dump(outjson, outfile);
         #json.dump(list(cutImage.flatten()), outfile)
+    FUCKED_FILE=open(os.path.abspath(__file__+'/../../../../Destination/results/'+inputID),'w')
+    FUCKED_FILE.write(str(list(cutImage.flatten())))
+    FUCKED_FILE.close();
     #outFile.close()
     #cv2.imwrite('../../../Destination/results/'+inputID,cutImage)
 else:
