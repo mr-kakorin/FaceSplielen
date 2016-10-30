@@ -22,10 +22,10 @@ if len(sys.argv)>1:
     FUCKED_FILE.write(str(tf.GetTwoDimMatrix(cutImage)[0:10,0:10].flatten()))
     FUCKED_FILE.close();
     #cutImage, facecoord=cf.cutFace(inputImageName,inputJSONName)
+    cutImage, facecoord=cf.cutFace(inputImageName,inputJSONName)
     gmc=tf.GetMarksCoordinates(inputJSONName)
     tf.TransformMarkCoordinates(gmc,facecoord)
     k=0
-    tf.TransformMarkCoordinates(gmc,facecoord)
     for key, value in gmc.items():
         if k == 0:
           tf.rotel(cutImage,value,30,k)
@@ -39,7 +39,7 @@ if len(sys.argv)>1:
         for j in range(facecoord[1],facecoord[1]+w):
             image[i,j]=cutImage[i-facecoord[0],j-facecoord[1]];    
     #outFile.close()
-    cv2.imwrite(os.path.abspath(__file__+'../../../Destination/results/'+inputID+'_img'),image)
+    cv2.imwrite(os.path.abspath(__file__+'/../../../../Destination/results/'+inputID+'.jpg'),image)
 else:
     cutImage, facecoord=cf.cutFace('kor.jpg','jsonDesc.txt')
    

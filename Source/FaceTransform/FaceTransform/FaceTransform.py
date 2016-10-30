@@ -10,7 +10,7 @@ def GetTwoDimMatrix(img):
 	twoDim = np.zeros((height, width,1));
 	for i in range(0,height):
 		for j in range(0,width):
-				twoDim[i,j] = (img[i,j,0])+(img[i,j,1])+(img[i,j,2])
+				twoDim[i,j] = (img[i,j,0])/3+(img[i,j,1])/3+(img[i,j,2])/3
 				if twoDim[i,j]>255:
 					twoDim[i,j] = twoDim[i,j]-255;
 	return twoDim
