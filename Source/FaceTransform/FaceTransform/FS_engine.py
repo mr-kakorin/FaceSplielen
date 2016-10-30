@@ -5,7 +5,6 @@ import os
 import numpy
 import CutFaces as cf
 import FaceTransform as tf
-import matplotlib.pyplot as plt
 if len(sys.argv)>1:
     inputID=sys.argv[1]
     inputImageName=os.path.abspath(__file__+'/../../../../Destination/uploads/'+inputID)
@@ -40,8 +39,8 @@ if len(sys.argv)>1:
         for j in range(facecoord[1],facecoord[1]+w):
             image[i,j]=cutImage[i-facecoord[0],j-facecoord[1]];    
     #outFile.close()
-    plt.plot(tf.GetTwoDimMatrix(cutImage)[0:10,0:10].flatten());
-    plt.savefig(os.path.abspath(__file__+'/../../../../Destination/results/'+inputID + '.png'));
+    #plt.plot(tf.GetTwoDimMatrix(cutImage)[0:10,0:10].flatten());
+    #plt.savefig(os.path.abspath(__file__+'/../../../../Destination/results/'+inputID + '.png'));
     cv2.imwrite(os.path.abspath(__file__+'/../../../../Destination/results/'+inputID+'.jpg'),image)
 else:
     cutImage, facecoord=cf.cutFace('kor.jpg','jsonDesc.txt')
