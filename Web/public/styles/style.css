@@ -70,3 +70,12 @@ div.height120 { height: 120px; }
 	text-align: center;
 }
 
+#Result .photo {
+	width: 580px;
+}
+
+#Result .subhead {
+	font-size: 35px;
+	margin-top: 15px;
+	margin-bottom: 15px;
+}
