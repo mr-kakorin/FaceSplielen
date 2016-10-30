@@ -12,7 +12,7 @@ def cutFace(imageName,jsonDescription):
     listCoordFace=getCoordinateFace(jsonDescription)
     img=cv2.imread(imageName)
     cutImg=img[listCoordFace[0]:listCoordFace[2],listCoordFace[1]:listCoordFace[3]]
-    return cutImg
+    return cutImg,listCoordFace
 
 
 
@@ -49,6 +49,11 @@ def rot(img2,listCoord,row,col, angle,iscycle=False):
                     listofindexBlack.append((i + listCoord[0],j + listCoord[1]))
                     listofindexBlack.append((i + listCoord[0],j +2+ listCoord[1]))
                     listofindexBlack.append((i + listCoord[0],j -2+ listCoord[1]))
+                    
+                    listofindexBlack.append((i + listCoord[0]-1,j + listCoord[1]))
+                    listofindexBlack.append((i + listCoord[0]+1,j + listCoord[1]))
+                    listofindexBlack.append((i + listCoord[0],j +1+ listCoord[1]))
+                    listofindexBlack.append((i + listCoord[0],j -1+ listCoord[1]))
                     #img2[i + listCoord[0],j + listCoord[1]] = (img2[i + listCoord[0] - 1,j + listCoord[1]]/2 + img2[i + listCoord[0],j + listCoord[1] - 1]/2)
                 else:
                     img2[i + listCoord[0],j + listCoord[1]] = dst[i,j]

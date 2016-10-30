@@ -34,20 +34,34 @@ def GetCArea(cnt):
 def GetGrayScaleImg(img):
 	return cv2.cvtColor(img, cv2.COLOR_BGR2GRAY);
 
+
 def GetMarksCoordinates(jsonDescrip):
-	outListCoordinateFace=[]
+	outListCoordinateFace={}
 	with open(jsonDescrip) as jsonfile:
 		jsLoad = json.load(jsonfile)
 	for i in range(0,34):
-		outListCoordinateFace.append(jsLoad['faceAnnotations'][0]['landmarks'][i]['position']['x'])
-		outListCoordinateFace.append(jsLoad['faceAnnotations'][0]['landmarks'][i]['position']['y'])
+		outListCoordinateFace[jsLoad['faceAnnotations'][0]['landmarks'][i]['type']]=[
+		round(jsLoad['faceAnnotations'][0]['landmarks'][i]['position']['y']),
+        round(jsLoad['faceAnnotations'][0]['landmarks'][i]['position']['x'])]
 		#outListCoordinateFace.append(jsLoad['faceAnnotations'][0]['landmarks'][i]['position']['z'])
 	return outListCoordinateFace
 
+def zalitPart(img,inlist,row,col,inlistout):
+    
+    x0=inlist[0]-round(row/2)
+    y0=inlist[1]-round(col/2)
+    x1=inlistout[0]-round(row/2)
+    y1=inlistout[1]-round(col/2)
+
+    for i in range(row):
+        for j in range(col):
+            img[i+x1,j+y1,:]=img[i+x0,j+y0,:]
+    return img
+
 def TransformMarkCoordinates(markcoord,facecoord):
-    for i in range(0,len(markcoord),2):
-        markcoord[i] = markcoord[i] - facecoord[1]
-        markcoord[i+1] = markcoord[i+1] - facecoord[0]
+    for i in markcoord.values():
+        i[0] = i[0] - facecoord[0]
+        i[1] = i[1] - facecoord[1]
     return 
 
 def InterpolateBetween(img,ec):
