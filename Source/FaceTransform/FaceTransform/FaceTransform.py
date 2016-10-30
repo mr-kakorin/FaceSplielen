@@ -33,7 +33,10 @@ def GetCArea(cnt):
 
 #get gray scale image from normal image
 def GetGrayScaleImg(img):
-	return cv2.cvtColor(img, cv2.COLOR_BGR2GRAY);
+    if np.array(img).ndim>2:
+	    return cv2.cvtColor(img, cv2.COLOR_BGR2GRAY);
+    else:
+        return img
 
 
 def GetMarksCoordinates(jsonDescrip):
