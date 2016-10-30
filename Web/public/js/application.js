@@ -14,6 +14,12 @@ $( document ).ready( function () {
 
 		$('#SourcePhoto').append($(source));
 		$("#ResPhoto").append($(result));
+
+		$.get('/result?type=result&filename='+id).then(function(data) {
+			console.log(data);
+		}).then(function() {
+
+		});
 	}
 
 	$("#ClickCamera").click( function () {
