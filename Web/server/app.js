@@ -1,4 +1,5 @@
 var app = require('express')();
+var pshell = require('python-shell');
 var path = require('path');
 var fs = require('fs');
 var bodyParser = require('body-parser');
@@ -42,35 +43,19 @@ app.post ( '/run', upload.single('file'), function ( req, res ) {
 
 						if (err) {
 							console.log( 'Ошибка записи JSON-файла: ', err );
-						} else if (false) {
+						} else if (true) {
 
-							var proccess = spawn(
-								'python',
-								[path.resolve(__filename+'/../../../Source/FaceTransform/FaceTransform/FS_engine.py'), req.file.filename]
-								);
+							pshell.run(path.resolve(__filename+'/../../../Source/FaceTransform/FaceTransform/FS_engine.py'), function (err) {
+								if (err) console.log(err) else {
+									console.log('finished');
 
-							process.stdout.on('data', function (data) {
+									res.send({
+										success: true,
+										filename: req.file.filename
+									});	
+								}
+							})
 
-								console.log('Python процесс вернул: ', data);
-							});
-
-							process.stderr.on('data', function (data) {
-							  console.log("Python ошибка:", data);
-							});
-
-							process.on('close', function (code) {
-								console.log('Python процесс завершен с кодом ', code);
-
-								res.send({
-									success: true
-								});	
-							});
-						} else {
-
-							res.send({
-								success: true,
-								filename: req.file.filename
-							});
 						}
 					}
 				);
@@ -100,35 +85,19 @@ app.post ( '/run_base64', function ( req, res ) {
 
 								if (err) {
 									console.log( 'Ошибка записи JSON-файла: ', err );
-								} else if (false) {
+								} else if (true) {
 
-									var proccess = spawn(
-										'python',
-										[path.resolve(__filename+'/../../../Source/FaceTransform/FaceTransform/FS_engine.py'), name]
-										);
+									pshell.run(path.resolve(__filename+'/../../../Source/FaceTransform/FaceTransform/FS_engine.py'), function (err) {
+										if (err) console.log(err) else {
+											console.log('finished');
 
-									process.stdout.on('data', function (data) {
+											res.send({
+												success: true,
+												filename: name
+											});	
+										}
+									})
 
-										console.log('Python процесс вернул: ', data);
-									});
-
-									process.stderr.on('data', function (data) {
-									  console.log("Python ошибка:", data);
-									});
-
-									process.on('close', function (code) {
-										console.log('Python процесс завершен с кодом ', code);
-
-										res.send({
-											success: true
-										});	
-									});
-								} else {
-
-									res.send({
-										success: true,
-										filename: name
-									});
 								}
 							}
 						);
