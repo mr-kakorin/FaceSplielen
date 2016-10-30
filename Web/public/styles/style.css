@@ -4,7 +4,24 @@ a:hover { text-decoration: none; }
 li { padding: 0px; margin: 0px; }
 ul { padding: 0px; margin: 0px; list-style: none;}
 
-#window1 {
+
+section.top_ { height: 150px; }
+section.windows {
+	width: 600px;
+	border-radius: 80px;
+	background-color: #fff;
+	margin:auto;
+	position: relative;
+	box-shadow: 0 0 10px rgba(0,0,0,0.5);
+	padding: 20px;
+}
+.active {display: block;}
+.deactive {display: none;}
+div.height100 { height: 100px; }
+div.height150 { height: 150px; }
+div.height120 { height: 120px; }
+
+#window1_Begin {
 	border-radius: 80px;
 	padding: 20px;
 	background: #fff;
@@ -12,11 +29,10 @@ ul { padding: 0px; margin: 0px; list-style: none;}
 	text-align: center;
 	height: 360px;
 	margin: auto;
-	margin-top: 150px;
 	position: relative;
 	box-shadow: 0 0 10px rgba(0,0,0,0.5);
 }
-#window1 .button:hover {
+.windows .button:hover {
 	-webkit-transition: background-color 100ms linear;
 	-moz-transition: background-color 100ms linear;
 	-o-transition: background-color 100ms linear;
@@ -25,14 +41,14 @@ ul { padding: 0px; margin: 0px; list-style: none;}
 	background-color: #00c3c1;
 }
 
-#window1 .text {
+#window1_Begin .text {
 	width: 640px;
 	padding: 0px;
 	font-size: 30px;
 	margin-top: 40px;
 }
 
-#window1 .button {
+.windows .button {
 	position: absolute;
 	bottom: 0px;
 	left: 0px;
@@ -51,4 +67,6 @@ ul { padding: 0px; margin: 0px; list-style: none;}
 	-ms-transition: background-color 100ms linear;
 	transition: background-color 100ms linear;
 	cursor: pointer;
+	text-align: center;
 }
+

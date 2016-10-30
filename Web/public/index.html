@@ -5,73 +5,60 @@
 	<title>FaceSpielen</title>
 
 	<link rel="stylesheet" type="text/css" href="/styles/style.css">
+	<link href="/styles/uploadfile.css" rel="stylesheet">
 
 	<script src="/js/jquery-3.1.1.min.js" type="text/javascript"></script>
 	<script src="/js/application.js" type="text/javascript"></script>
 </head>
 <body>
 
-	<section id="window1">
+	<section class='top_'></section>
+	<section id="window1_Begin" class="windows active">
 		<div class="logo">
 			<img src="/images/logo.png">
 		</div>
 		<div class="text">
 			Поиграешь со своим лицом?
 		</div>
-		<div class="button">
+		<div class="button btn_route" route="FileUpload">
 			Начать
 		</div>
 	</section>
 
-	<!--
-	<section id="Main">
-		<section id="Head">
-			<div id="Logo">
-				<img src="/images/logo.png">
+	<section id="window_FileUpload" class="windows deactive">
+		<div class='myUploader' id="fileuploader">
+			<div id='fileuploader' class='simform'>
+				<p>Выберите</p>
+				<p>или</p>
+				<p>перенесите файл сюда</p>
 			</div>
-			<div id="Menu">
-				<ul>
-					<li>
-						<a href='/'>Главная</a>
-					</li>
-					<li>
-						<a href='#'>Азия</a>
-					</li>
-					<li>
-						<a href='#'>Европа</a>
-					</li>
-				</ul>
+			<form id="UploadFileForm" class='deactive'>
+				<input type="file" name="photo" id="InputFile">
+			</form>
+			<div class='deactive simform simformSpec'>
+				Загрузка...
 			</div>
-			<div style='clear:both'></div>
-		</section>
-		<section id="Body">
-			
-		</section>
-		<section id="Footer">
-			
-		</section>
+		</div>	
+		<div class='height150'></div>
+
+		<div class='button btn_route' route="WebCam">
+			Использовать камеру
+		</div>
 	</section>
 
-	
-	<center>
+	<section id="window_WebCam" class="windows deactive">
+		<BR>
+		<video id="video" width="580" height="480" autoplay></video>
+		<div id="dphoto" class='deactive'><canvas id="photo" width="560" height="460"></canvas></div>
+		<div class='height120'></div>
+		<div class='button' id="SnapPhoto" route='SendPhoto'>
+			Сделать снимок
+		</div>
+	</section>
 
-	<h1>Выберите фотографию на вашем компьютере</h1>
+	<section id="Result" class='deactive'>
+		Отправка фотографии...
+	</section>
 
-	<form id="MainForm">
-		<ul>
-			<li>
-				<input type="file" id="InputFile" name="photo">
-			</li>
-			<li>
-				<input type="submit" value="Отправить фотографию">
-			</li>
-		</ul>
-	</form>
-
-	<div id="Result">
-
-	</div>
-	</center>
-	-->
 </body>
 </html>
