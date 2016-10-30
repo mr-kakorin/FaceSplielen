@@ -23,7 +23,7 @@ if len(sys.argv)>1:
     FUCKED_FILE.close();
     #cutImage, facecoord=cf.cutFace(inputImageName,inputJSONName)
     gmc=tf.GetMarksCoordinates(inputJSONName)
-    gmc=tf.TransformMarkCoordinates(gmc,facecoord)
+    tf.TransformMarkCoordinates(gmc,facecoord)
     k=0
     tf.TransformMarkCoordinates(gmc,facecoord)
     for key, value in gmc.items():
