@@ -12,7 +12,7 @@ if len(sys.argv)>1:
     print('success')
     cutImage, tmp=cf.cutFace(inputImageName,inputJSONName)
     cutImage = tf.GetTwoDimMatrix(cutImage);
-    cutmage = cv2.resize(cutImage,None,fx=0.1, fy=0.1, interpolation = cv2.INTER_CUBIC)
+    cutmage = cv2.resize(cutImage,None,fx=0.025, fy=0.025, interpolation = cv2.INTER_CUBIC)
 
     with open(inputID, 'wb') as outfile:
         outjson = {}
