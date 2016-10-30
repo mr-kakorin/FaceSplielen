@@ -1,6 +1,20 @@
 
 $( document ).ready( function () {
 
+	var ShowResults = function (id) {
+		$('.windows').hide();
+		$("#Result").show();
+		$("#Result").removeClass('deactive');
+
+		var source = new Image();
+		source.src = '/result?type=uploads&filename='+id;
+
+		var result = new Image();
+		result.src = '/result?type=results&filename='+id+'.jpg';
+
+		$('#SourcePhoto').append($(source));
+		$("#ResPhoto").append($(result));
+	}
 
 	$("#ClickCamera").click( function () {
 		// Grab elements, create settings, etc.
@@ -42,6 +56,7 @@ $( document ).ready( function () {
 	        },
 	        success: function (data) {
 	        	$("#window_FileUpload").hide();
+	        	$("#window_WebCam").hide();
 	        	$("#Result").removeClass("deactive");
 	            console.log(data)
 			    var img = new Image();
