@@ -34,7 +34,7 @@ $( document ).ready( function () {
 			var all_data = [
 			  { data: array},
 			];
-			$.plot($(".plot"), all_data, plot_conf);
+			var plot = $('.plot').plot(all_data, plot_conf).data('plot');
 		}).then(function() {
 
 		});
