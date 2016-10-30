@@ -7,7 +7,7 @@ var spawn = require('child_process').spawn;
 var upload = require('multer')({
 	dest: path.resolve( __filename+'/../../../Destination/uploads' ),
 	limits: {
-		fileSize: 2*1024*1024
+		fileSize: 10*1024*1024
 	}
 });
 var vision = require('@google-cloud/vision')({
