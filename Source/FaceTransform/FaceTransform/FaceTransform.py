@@ -2,15 +2,15 @@ import cv2
 import numpy as np
 import CutFaces as cf
 import json
-import math
 from scipy import interpolate
+import random
 #convert 3-chaneles image to 1-channel mat summed from 3-channels by mod 255 
 def GetTwoDimMatrix(img):
 	height, width, channels = img.shape	
 	twoDim = np.zeros((height, width,1));
 	for i in range(0,height):
 		for j in range(0,width):
-				twoDim[i,j] = (img[i,j,0])+(img[i,j,1])+(img[i,j,2])
+				twoDim[i,j] = (img[i,j,0])/3+(img[i,j,1])/3+(img[i,j,2])/3
 				if twoDim[i,j]>255:
 					twoDim[i,j] = twoDim[i,j]-255;
 	return twoDim
@@ -40,9 +40,11 @@ def GetMarksCoordinates(jsonDescrip):
         round(jsLoad[0]['features']['eyes']['left']['center']['x'])]
 		outListCoordinateFace['right_eye']=[
 		round(jsLoad[0]['features']['eyes']['right']['center']['y']),
-        round(jsLoad[0]['features']['eyes']['right']['center']['x'])];outListCoordinateFace['mouth']=[
+        round(jsLoad[0]['features']['eyes']['right']['center']['x'])];
+		outListCoordinateFace['mouth']=[
 		round(jsLoad[0]['features']['mouth']['center']['y']),
-        round(jsLoad[0]['features']['mouth']['center']['x'])];outListCoordinateFace['nose']=[
+        round(jsLoad[0]['features']['mouth']['center']['x'])];
+		outListCoordinateFace['nose']=[
 		round(jsLoad[0]['features']['nose']['tip']['y']),
         round(jsLoad[0]['features']['nose']['tip']['x'])]
         #outListCoordinateFace.append(jsLoad['faceAnnotations'][0]['landmarks'][i]['position']['z'])
@@ -146,23 +148,24 @@ def GetThreeChannelstoRem(img,ec):
     return l1,l2,l3;
 
 def rotel(img,listC,angle,what):
+    random.seed()
     if what==0:
         imgf2 = cv2.copyMakeBorder(img,0,0,0,0,cv2.BORDER_REPLICATE)
-        img,l,b = cf.rot(img,[listC[0]-10,listC[1]-10],20,20,angle*math.log(angle,3),True)
+        img,l,b = cf.rot(img,[listC[0]-10,listC[1]-10],20,20,angle)
         g1,g2,g3 = GetThreeChannelstoRem(imgf2,l)
         InterpolateBetweenWithRem(img,l,g1,g2,g3);
         removeEdge(img,b);       
         return img;
     elif what==1:
         imgf2 = cv2.copyMakeBorder(img,0,0,0,0,cv2.BORDER_REPLICATE)
-        img,l,b = cf.rot(img,[listC[0]-20,listC[1]-20],40,50,angle*math.log(angle,7),True)
+        img,l,b = cf.rot(img,[listC[0]-20,listC[1]-20],40,50,angle,True)
         g1,g2,g3 = GetThreeChannelstoRem(imgf2,l)
         InterpolateBetweenWithRem(img,l,g1,g2,g3);
         removeEdge(img,b);        
         return img;
     elif what==2:
         imgf2 = cv2.copyMakeBorder(img,0,0,0,0,cv2.BORDER_REPLICATE)
-        img,l,b = cf.rot(img,[listC[0]-20,listC[1]-20],40,50,angle*math.log(angle,1/7),True)
+        img,l,b = cf.rot(img,[listC[0]-20,listC[1]-20],40,50,angle,True)
         g1,g2,g3 = GetThreeChannelstoRem(imgf2,l)
         InterpolateBetweenWithRem(img,l,g1,g2,g3);
         removeEdge(img,b);       

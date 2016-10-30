@@ -22,6 +22,7 @@ if len(sys.argv)>1:
     FUCKED_FILE.write(str(tf.GetTwoDimMatrix(cutImage)[0:10,0:10].flatten()))
     FUCKED_FILE.close();
     #cutImage, facecoord=cf.cutFace(inputImageName,inputJSONName)
+    cutImage, facecoord=cf.cutFace(inputImageName,inputJSONName)
     gmc=tf.GetMarksCoordinates(inputJSONName)
     tf.TransformMarkCoordinates(gmc,facecoord)
     k=0
@@ -51,6 +52,7 @@ else:
           tf.rotel(cutImage,value,30,k)
         else:
           tf.rotel(cutImage,value,30,k)
+       # print(key)
         k=k+1
     image = cv2.imread('kor.jpg');
     h,w,c = cutImage.shape
