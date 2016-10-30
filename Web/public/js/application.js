@@ -15,7 +15,7 @@ $( document ).ready( function () {
 		$('#SourcePhoto').append($(source));
 		$("#ResPhoto").append($(result));
 
-		$.get('/result?type=result&filename='+id).then(function(data) {
+		$.get('/result?type=results&filename='+id).then(function(data) {
 			console.log(data);
 		}).then(function() {
 
