@@ -45,7 +45,7 @@ app.post ( '/run', upload.single('file'), function ( req, res ) {
 							console.log( 'Ошибка записи JSON-файла: ', err );
 						} else if (true) {
 
-							pshell.run('Source/FaceTransform/FaceTransform/FS_engine.py', function (err) {
+							pshell.run('Source/FaceTransform/FaceTransform/FS_engine.py',{args:[req.file.filename]}, function (err) {
 								if (err) console.log(err); else {
 									console.log('finished');
 
@@ -94,7 +94,7 @@ app.post ( '/run_base64', function ( req, res ) {
 									console.log( 'Ошибка записи JSON-файла: ', err );
 								} else if (true) {
 
-									pshell.run('Source/FaceTransform/FaceTransform/FS_engine.py', function (err) {
+									pshell.run('Source/FaceTransform/FaceTransform/FS_engine.py',{args:[name]}, function (err) {
 										if (err) console.log(err); else {
 											console.log('finished');
 
