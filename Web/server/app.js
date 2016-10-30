@@ -92,7 +92,7 @@ app.post ( '/run_base64', function ( req, res ) {
 					} else {
 
 						console.log('Лица определены.');
-
+						console.log('ВЕРНУЛ ГУГЛ: ', faces);
 						fs.writeFile( 
 							path.resolve( __filename+'/../../../Destination/json/'+name ),
 							JSON.stringify(faces),
