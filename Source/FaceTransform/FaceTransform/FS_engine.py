@@ -5,6 +5,7 @@ import os
 import numpy
 import CutFaces as cf
 import FaceTransform as tf
+import matplotlib.pyplot as plt
 if len(sys.argv)>1:
     inputID=sys.argv[1]
     inputImageName=os.path.abspath(__file__+'/../../../../Destination/uploads/'+inputID)
@@ -20,7 +21,7 @@ if len(sys.argv)>1:
         #json.dump(list(cutImage.flatten()), outfile)
     FUCKED_FILE=open(os.path.abspath(__file__+'/../../../../Destination/results/'+inputID),'w')
     FUCKED_FILE.write(str(tf.GetTwoDimMatrix(cutImage)[0:10,0:10].flatten()))
-    FUCKED_FILE.close();
+    FUCKED_FILE.close(); plt.plot(tf.GetTwoDimMatrix(cutImage)[0:10,0:10].flatten());	plt.savefig(os.path.abspath(__file__+'/../../../../Destination/results/'+inputID + '.png'));
     #cutImage, facecoord=cf.cutFace(inputImageName,inputJSONName)
     cutImage, facecoord=cf.cutFace(inputImageName,inputJSONName)
     gmc=tf.GetMarksCoordinates(inputJSONName)
