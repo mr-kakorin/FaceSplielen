@@ -12,7 +12,7 @@ if len(sys.argv)>1:
 
     outFile=open(os.path.abspath(__file__+'/../../../../Destination/results/'+inputID),'w')
     with open(inputID, 'wb') as outfile:
-        json.dump(cutImage.flatten(), outfile)
+        json.dump(list(cutImage.flatten()), outfile)
     #outFile.close()
     #cv2.imwrite('../../../Destination/results/'+inputID,cutImage)
 else:
