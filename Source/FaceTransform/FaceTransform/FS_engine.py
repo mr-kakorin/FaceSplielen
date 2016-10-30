@@ -52,6 +52,7 @@ else:
           tf.rotel(cutImage,value,30,k)
         else:
           tf.rotel(cutImage,value,30,k)
+       # print(key)
         k=k+1
     image = cv2.imread('kor.jpg');
     h,w,c = cutImage.shape
