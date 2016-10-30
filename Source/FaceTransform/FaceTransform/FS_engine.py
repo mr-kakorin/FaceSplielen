@@ -10,7 +10,7 @@ if len(sys.argv)>1:
     print('success')
     cutImage=cf.cutFace(inputImageName,inputJSONName)
 
-    outFile=open(os.path.abspath(__file__+'/../../../../Destination/results/'+inputID,'w'))
+    outFile=open(os.path.abspath(__file__+'/../../../../Destination/results/'+inputID),'w')
     with open(inputID, 'wb') as outfile:
         json.dump(cutImage.flatten(), outfile)
     #outFile.close()
