@@ -1,6 +1,12 @@
 
 $( document ).ready( function () {
 
+	var ShowLoading = function () {
+		$('.windows').hide();
+		$("#Loading").show();
+		$("#Loading").removeClass('deactive');
+	}
+
 	var ShowResults = function (id) {
 		$('.windows').hide();
 		$("#Result").show();
@@ -127,6 +133,7 @@ $( document ).ready( function () {
 	});
 
 	$("body").on('click', '.SEND_PHOTO', function () {
+		ShowLoading();
 		var photo = document.getElementById('photo');
 		var data = photo.toDataURL();
 		console.log(data);
@@ -193,6 +200,7 @@ $( document ).ready( function () {
 		$(area).removeClass('hover');
 	}
 	area.ondrop = function (event) {
+		ShowLoading();
 		console.log('DROP');
 		$(area).removeClass('hover');
 		var file = event.dataTransfer.files[0];
@@ -215,6 +223,7 @@ $( document ).ready( function () {
 	}
 
 	$("#InputFile").change( function (evt) {
+		ShowLoading();
 		console.log("Change!");
 		var formData = new FormData($("#UploadFileForm")[0]);
 	    $.ajax({
