@@ -15,7 +15,7 @@ imgf,fcoord = cf.cutFace('kor.jpg',json);
 
 imgf2 = cv2.copyMakeBorder(imgf,0,0,0,0,cv2.BORDER_REPLICATE)
 
-imgg, l, b = cf.rot(imgf,[100,80],31,41,-25,True);
+imgg, l, b = cf.rot(imgf,[70,90],40,50,270,True);
 
 g1,g2,g3 = ft.getFunctionFromMatixWhiteBlack(imgf2,l)
 
