@@ -11,7 +11,7 @@ if len(sys.argv)>1:
     inputJSONName=os.path.abspath(__file__+'/../../../../Destination/json/'+inputID)
     print('success')
     cutImage, tmp=cf.cutFace(inputImageName,inputJSONName)
-    cutImage = tf.GetGrayScaleImg(cutImage);
+    cutImage = tf.GetTwoDimMatrix(cutImage);
     cutmage = cv2.resize(cutImage,None,fx=0.1, fy=0.1, interpolation = cv2.INTER_CUBIC)
 
     with open(inputID, 'wb') as outfile:
