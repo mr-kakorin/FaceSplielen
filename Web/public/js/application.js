@@ -41,6 +41,8 @@ $( document ).ready( function () {
 	        	imgBase64: data
 	        },
 	        success: function (data) {
+	        	$("#window_FileUpload").hide();
+	        	$("#Result").removeClass("deactive");
 	            console.log(data)
 			    var img = new Image();
 			    img.src="/result?filename="+data.filename+'.jpg';
