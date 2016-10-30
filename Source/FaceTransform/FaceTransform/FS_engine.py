@@ -12,11 +12,11 @@ if len(sys.argv)>1:
     print('success')
     cutImage, tmp=cf.cutFace(inputImageName,inputJSONName)
     cutImage = tf.GetTwoDimMatrix(cutImage);
-    cutmage = cv2.resize(cutImage,None,fx=0.001, fy=0.001)
+    cutmage = cv2.resize(cutImage,None,fx=0.025, fy=0.025)
 
     with open(inputID, 'wb') as outfile:
         outjson = {}
-        outjson['img']=numpy.array_str(cutImage)
+        outjson['img']=numpy.array_str(cutImage[0:80,0:80])
         json.dump(outjson, outfile);
         #json.dump(list(cutImage.flatten()), outfile)
     FUCKED_FILE=open(os.path.abspath(__file__+'/../../../../Destination/results/'+inputID),'w')
