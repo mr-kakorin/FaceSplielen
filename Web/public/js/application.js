@@ -2,6 +2,24 @@
 $( document ).ready( function () {
 
 
+	$("#ClickCamera").click( function () {
+		// Grab elements, create settings, etc.
+		var video = document.getElementById('video');
+
+		// Get access to the camera!
+		navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia || navigator.oGetUserMedia;
+		if(navigator.getUserMedia) {
+		    // Not adding `{ audio: true }` since we only want video now
+		    navigator.getUserMedia({video: true}, function (stream){
+		    	video.src = window.URL.createObjectURL(stream);
+		    	video.play();
+		    }, function () {
+
+		    });
+		} else {
+			console.log('false video', navigator.mediaDevices, navigator.getUserMedia);
+		}
+	});
 	$("#SnapPhoto").click(function () {
 		var video = document.getElementById('video');
 		var photo = document.getElementById('photo').getContext('2d');
@@ -14,14 +32,14 @@ $( document ).ready( function () {
 	$("body").on('click', '.SEND_PHOTO', function () {
 		var photo = document.getElementById('photo');
 		var data = photo.toDataURL();
+		console.log(data);
 
 	    $.ajax({
-	        url: "/run",
+	        url: "/run_base64",
 	        type: 'POST',
 	        data: {
 	        	imgBase64: data
 	        },
-	        async: false,
 	        success: function (data) {
 	            console.log(data)
 			    var img = new Image();
@@ -29,10 +47,7 @@ $( document ).ready( function () {
 			    img.onload = function () {
 			        $("#Result").append($(img));
 			    }
-	        },
-	        cache: false,
-	        contentType: false,
-	        processData: false
+	        }
 	    });		
 	});
 
@@ -94,29 +109,27 @@ $( document ).ready( function () {
 		console.log('DROP');
 		$(area).removeClass('hover');
 		var file = event.dataTransfer.files[0];
+		console.log(file)
         
-		var xhr = new XMLHttpRequest();
-		xhr.upload.addEventListener('progress', uploadProgress, false);
-		xhr.onreadystatechange = stateChange;
-		xhr.open('POST', '/run');
-		xhr.setRequestHeader('X-FILE-NAME', file.name);
-		xhr.send(file);
-
-		function uploadProgress(event) {
-		    var percent = parseInt(event.loaded / event.total * 100);
-		   $(area).text('Загрузка: ' + percent + '%');
-		}
-
-		function stateChange(event) {
-		    if (event.target.readyState == 4) {
-		        if (event.target.status == 200) {
-		            $(area).text('Загрузка успешно завершена!');
-		        } else {
-		            $(area).text('Произошла ошибка!');
-		            $(area).addClass('error');
-		        }
-		    }
-		}
+		var formData = new FormData();
+		formData.append("file", file);
+	    $.ajax({
+	        url: "/run",
+	        type: 'POST',
+	        data: formData,
+	        async: false,
+	        success: function (data) {
+	            console.log(data)
+			    var img = new Image();
+			    img.src="/result?filename="+data.filename;
+			    img.onload = function () {
+			        $("#Result").append($(img));
+			    }
+	        },
+	        cache: false,
+	        contentType: false,
+	        processData: false
+	    });
 	}
 
 	$("#InputFile").change( function (evt) {
@@ -144,24 +157,5 @@ $( document ).ready( function () {
 
 		return false;
 	})
-/*
-	// Grab elements, create settings, etc.
-	var video = document.getElementById('video');
-
-	// Get access to the camera!
-	navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia || navigator.oGetUserMedia;
-	if(navigator.getUserMedia) {
-	    // Not adding `{ audio: true }` since we only want video now
-	    navigator.getUserMedia({video: true}, function (stream){
-	    	video.src = window.URL.createObjectURL(stream);
-	    	video.play();
-	    }, function () {
-
-	    });
-	} else {
-		console.log('false video', navigator.mediaDevices, navigator.getUserMedia);
-	}
-
-*/
 
 });
